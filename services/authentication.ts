@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginResponse } from '@/interfaces'
-import { store, setAuthentication } from '@/store'
+import { store, setAuthentication, removeAuthentication } from '@/store'
 import { getGenericPassword, setGenericPassword } from 'react-native-keychain'
 
 export const authenticationService = async (username: string, password: string): Promise<LoginResponse> => {
@@ -18,6 +18,11 @@ export const authenticationService = async (username: string, password: string):
 
   store.dispatch(setAuthentication(data?.token))
   return data
+}
+
+export const logoutService = async () => {
+  await AsyncStorage.removeItem('token')
+  store.dispatch(removeAuthentication())
 }
 
 export const getInitState = async () => {

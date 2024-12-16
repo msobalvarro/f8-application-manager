@@ -6,7 +6,6 @@ const initialState: StateRedux = {
   token: null,
 }
 
-
 const counterSlice = createSlice({
   name: 'state',
   initialState,
