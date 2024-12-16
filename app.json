@@ -9,13 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.f8app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.f8app"
     },
     "web": {
       "bundler": "metro",

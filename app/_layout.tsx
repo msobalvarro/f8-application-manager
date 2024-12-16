@@ -1,12 +1,13 @@
+import '@/styles/global.css'
+import 'react-native-reanimated'
 import * as SplashScreen from 'expo-splash-screen'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
-import { Slot, Stack } from 'expo-router'
+import { Slot } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { NativeBaseProvider, View } from 'native-base'
 import { useEffect } from 'react'
 import { KeyboardAvoidingView, ScrollView, useColorScheme } from 'react-native'
-import 'react-native-reanimated'
 import { LayoutStyles } from '@/styles'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
