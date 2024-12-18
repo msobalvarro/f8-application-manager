@@ -9,6 +9,7 @@ import { NativeBaseProvider, View } from 'native-base'
 import { useEffect } from 'react'
 import { KeyboardAvoidingView, ScrollView, useColorScheme } from 'react-native'
 import { LayoutStyles } from '@/styles'
+import { AlertNotificationRoot } from 'react-native-alert-notification'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -31,20 +32,23 @@ export default function Layout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <NativeBaseProvider >
-        <KeyboardAvoidingView behavior='padding'>
-          <ScrollView
-            automaticallyAdjustContentInsets={true}
-            contentContainerStyle={LayoutStyles.scrollContainer}
-            keyboardShouldPersistTaps='always'
-            keyboardDismissMode='interactive'>
-            <View style={LayoutStyles.container}>
-              <Slot />
-            </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-        <StatusBar style='auto' />
-      </NativeBaseProvider >
+      <AlertNotificationRoot>
+        <NativeBaseProvider >
+          <KeyboardAvoidingView behavior='padding'>
+            <ScrollView
+
+              automaticallyAdjustContentInsets={true}
+              contentContainerStyle={LayoutStyles.scrollContainer}
+              keyboardShouldPersistTaps='always'
+              keyboardDismissMode='interactive'>
+              <View style={LayoutStyles.container}>
+                <Slot />
+              </View>
+            </ScrollView>
+          </KeyboardAvoidingView>
+          <StatusBar style='auto' />
+        </NativeBaseProvider >
+      </AlertNotificationRoot>
     </ThemeProvider >
   )
 }

@@ -4,7 +4,7 @@ import { LoginStyles as styles, UiStyles } from '@/styles'
 import { TextInput, View } from 'react-native'
 import { Button, Image, useToast } from 'native-base'
 import { ThemedText } from '@/components/ThemedText'
-import { authenticationService, getInitState, getToken } from '@/services/authentication'
+import { authenticationService, getInitState } from '@/services/authentication'
 import { useRouter } from 'expo-router'
 import { useStore } from '@/hooks/useStore'
 
@@ -32,7 +32,7 @@ export default function Login() {
 
   useEffect(() => {
     if (store.isAuth) {
-      router.push('/home')
+      router.push('/(tabs)/products')
       // toast.show({ description: 'Sesión Iniciada' })
       toggleLoading(false)
     }

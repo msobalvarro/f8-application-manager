@@ -20,6 +20,7 @@
     "@react-navigation/bottom-tabs": "^7.0.0",
     "@react-navigation/native": "^7.0.0",
     "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
     "expo": "~52.0.18",
     "expo-blur": "~14.0.1",
     "expo-constants": "~17.0.3",
@@ -37,6 +38,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.5",
+    "react-native-alert-notification": "^0.4.2",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-keychain": "^9.2.2",
     "react-native-reanimated": "^3.16.5",
@@ -49,6 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@types/axios": "^0.14.4",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
     "@types/react-test-renderer": "^18.3.0",

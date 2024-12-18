@@ -25,7 +25,6 @@ export default function Index() {
     )
   }
 
-
   return (
     <Fragment>
       <ThemedText className='text-gray-100'>Home Screen</ThemedText>
