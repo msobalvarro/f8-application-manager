@@ -36,7 +36,7 @@ export const LayoutStyles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: 30,
   },
 })
 
@@ -65,3 +65,43 @@ export const LoginStyles = StyleSheet.create({
   }
 })
 
+export const ProductsStyles = StyleSheet.create({
+  title: {
+    fontSize: 24,
+    color: '#FFF',
+  },
+
+  productContainerList: {
+    padding: 20,
+    gap: 10
+  },
+
+  productContainer: {
+    padding: 20,
+    backgroundColor: '#000',
+    gap: 10,
+  },
+
+  productTitle: {
+    fontSize: 20,
+    color: '#FFF',
+  },
+
+  description: {
+    // fontSize: 20,
+    color: '#FFF',
+  },
+})
+
+export const CarousellStyle = StyleSheet.create({
+  container: {
+    width: Dimensions.get('window').width,
+    height: 200,
+    overflowX: 'auto',
+    flexDirection: 'row',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+})

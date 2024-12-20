@@ -4,7 +4,7 @@ export default function LayoutTabs() {
   return (
     <Tabs>
       <Tabs.Screen name='products' />
-      <Tabs.Screen name='configuration' />
+      <Tabs.Screen name='preference' />
     </Tabs>
   )
 }

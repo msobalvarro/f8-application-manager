@@ -5,10 +5,11 @@ import { logoutService } from '@/services/authentication'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { PropsAxiosIntance } from '@/interfaces'
 
-const urlBackend = 'http://192.168.1.3:3000/api'
+export const SERVER_HOST = 'http://192.168.1.3:3000'
+export const ServerAddress = SERVER_HOST + '/api'
 
 export const useFetch = () => {
-  const fetchHttp = (endpoint: string) => fetch(`${urlBackend}/${endpoint}`)
+  const fetchHttp = (endpoint: string) => fetch(`${ServerAddress}/${endpoint}`)
 
   return { fetchHttp }
 }
@@ -42,13 +43,13 @@ export const useAxios = <T = any>({ endpoint, data: dataBody, autoFetch = true }
         if (err.code === 'ERR_NETWORK') {
           Toast.show({
             type: ALERT_TYPE.DANGER,
-            title: 'Internet Connection', 
+            title: 'Internet Connection',
             textBody: `Connection refused`
           })
         } else {
           Toast.show({
             type: ALERT_TYPE.DANGER,
-            title: 'Error', 
+            title: 'Error',
             textBody: String(err?.response?.data)
           })
         }

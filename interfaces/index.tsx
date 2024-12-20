@@ -14,3 +14,14 @@ export interface PropsAxiosIntance {
   params?: object
   autoFetch?: boolean
 }
+
+export interface ProductsPropierties {
+  name: string
+  description: string
+  unitPrice: number
+  images: [string]
+}
+
+export interface ProductsResponse extends ProductsPropierties {
+  _id: string
+}
