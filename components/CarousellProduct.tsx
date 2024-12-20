@@ -26,7 +26,7 @@ export function CarousellProduct({ images }: Props) {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll}>
         {images.map((image, k) => <RenderItemImage imageSource={image} key={k} />)}
       </ScrollView>
     </View>

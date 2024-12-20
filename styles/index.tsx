@@ -1,9 +1,11 @@
 import { Colors } from '@/constants/Colors'
 import { Dimensions, StyleSheet } from 'react-native'
 
+export const { height: HeightScreen, width: WidthScreen } = Dimensions.get('window')
+
 export const NotFoundStyles = StyleSheet.create({
   container: {
-    height: Dimensions.get('window').height,
+    height: HeightScreen,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.dark.background,
@@ -28,21 +30,17 @@ export const UiStyles = StyleSheet.create({
 
 export const LayoutStyles = StyleSheet.create({
   scrollContainer: {
-    height: Dimensions.get('window').height
+    height: HeightScreen
   },
-  container: {
-    backgroundColor: Colors.dark.background,
-    gap: 20,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 30,
+  rootContainer: {
+    height: HeightScreen,
+    width: WidthScreen,
   },
 })
 
 export const LoginStyles = StyleSheet.create({
   scrollContainer: {
-    height: Dimensions.get('window').height
+    height: HeightScreen
   },
   container: {
     backgroundColor: Colors.dark.background,
@@ -67,19 +65,20 @@ export const LoginStyles = StyleSheet.create({
 
 export const ProductsStyles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    paddingVertical: 50,
+    fontSize: 34,
     color: '#FFF',
   },
 
   productContainerList: {
-    padding: 20,
-    gap: 10
+    gap: 50
   },
 
   productContainer: {
-    padding: 20,
+    overflowX: 'hidden',
     backgroundColor: '#000',
     gap: 10,
+    padding: 20,
   },
 
   productTitle: {
@@ -88,20 +87,25 @@ export const ProductsStyles = StyleSheet.create({
   },
 
   description: {
-    // fontSize: 20,
     color: '#FFF',
   },
 })
 
 export const CarousellStyle = StyleSheet.create({
   container: {
-    width: Dimensions.get('window').width,
+    width: WidthScreen,
     height: 200,
     overflowX: 'auto',
     flexDirection: 'row',
   },
+  scroll: {
+    flexDirection: 'row',
+    overflowX: 'hidden',
+  },
   image: {
-    width: '100%',
-    height: '100%',
+    width: WidthScreen * 0.9,
+    height: 200,
+    marginRight: 10,
+    borderRadius: 10,
   },
 })

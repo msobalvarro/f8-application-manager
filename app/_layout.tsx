@@ -35,16 +35,9 @@ export default function Layout() {
       <AlertNotificationRoot>
         <NativeBaseProvider >
           <KeyboardAvoidingView behavior='padding'>
-            <ScrollView
-
-              automaticallyAdjustContentInsets={true}
-              contentContainerStyle={LayoutStyles.scrollContainer}
-              keyboardShouldPersistTaps='always'
-              keyboardDismissMode='interactive'>
-              <View style={LayoutStyles.container}>
-                <Slot />
-              </View>
-            </ScrollView>
+            <View style={LayoutStyles.rootContainer}>
+              <Slot />
+            </View>
           </KeyboardAvoidingView>
           <StatusBar style='auto' />
         </NativeBaseProvider >
