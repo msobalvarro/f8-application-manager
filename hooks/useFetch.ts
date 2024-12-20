@@ -17,7 +17,7 @@ export const useFetch = () => {
 export const useAxios = <T = any>({ endpoint, data: dataBody, autoFetch = true }: PropsAxiosIntance) => {
   const [data, setData] = useState<T | null>(null)
   const [status, setStatus] = useState<number | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [isLoading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
   const fetchData = useCallback(async () => {
@@ -67,5 +67,5 @@ export const useAxios = <T = any>({ endpoint, data: dataBody, autoFetch = true }
     }
   }, [])
 
-  return { data, loading, error, status, refetch: fetchData }
+  return { data, isLoading, error, status, refetch: fetchData }
 }

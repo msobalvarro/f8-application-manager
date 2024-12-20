@@ -22,8 +22,6 @@ interface Props {
 
 
 export function CarousellProduct({ images }: Props) {
-  console.log(images)
-
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll}>
