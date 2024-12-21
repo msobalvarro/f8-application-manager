@@ -1,10 +1,12 @@
 import { HeightScreen, WidthScreen } from '@/styles'
 import { ScrollView } from 'native-base'
-import { StyleSheet, View } from 'react-native'
+import { RefreshControl, StyleSheet, View } from 'react-native'
 
 interface Props {
   children: React.ReactNode
   scroll?: boolean
+  isLoading?: boolean
+  onRefresh?: () => void
 }
 
 const styles = StyleSheet.create({
@@ -31,11 +33,16 @@ const styles = StyleSheet.create({
   }
 })
 
-export const ContainerViewLayout = ({ children, scroll }: Props) => {
+export const ContainerViewLayout = ({ children, scroll, isLoading, onRefresh }: Props) => {
   if (scroll) {
     return (
       <View style={styles.containerScroll}>
-        <ScrollView contentContainerStyle={styles.scroll}>
+        <ScrollView
+          refreshControl={(onRefresh) &&
+            <RefreshControl
+              refreshing={Boolean(isLoading)}
+              onRefresh={onRefresh} />
+          } contentContainerStyle={styles.scroll}>
           {children}
         </ScrollView>
       </View>

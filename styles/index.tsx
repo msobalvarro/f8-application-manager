@@ -75,7 +75,8 @@ export const ProductsStyles = StyleSheet.create({
   },
 
   productContainer: {
-    overflowX: 'hidden',
+    borderRadius: 10,
+    overflow: 'hidden',
     backgroundColor: '#000',
     gap: 10,
     padding: 20,
@@ -89,13 +90,20 @@ export const ProductsStyles = StyleSheet.create({
   description: {
     color: '#FFF',
   },
+
+  buttonContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'flex-end',
+  },
 })
 
 export const CarousellStyle = StyleSheet.create({
   container: {
     width: WidthScreen,
-    height: 200,
-    overflowX: 'auto',
+    height: 250,
+    overflow: 'hidden',
     flexDirection: 'row',
   },
   scroll: {
@@ -103,8 +111,8 @@ export const CarousellStyle = StyleSheet.create({
     overflowX: 'hidden',
   },
   image: {
-    width: WidthScreen * 0.9,
-    height: 200,
+    width: WidthScreen * 0.85,
+    height: 250,
     marginRight: 10,
     borderRadius: 10,
   },
