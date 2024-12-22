@@ -22,7 +22,7 @@ interface Props {
 export function CarousellProduct({ images }: Props) {
   return (
     <View style={styles.container}>
-      <ScrollView horizontal style={styles.scroll}>
+      <ScrollView horizontal style={styles.scroll} contentContainerStyle={{ gap: 10 }}>
         {images.map((image, k) => <RenderItemImage imageSource={image} key={k} />)}
       </ScrollView>
     </View>

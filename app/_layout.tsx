@@ -7,9 +7,11 @@ import { Slot } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { NativeBaseProvider, View } from 'native-base'
 import { useEffect } from 'react'
-import { KeyboardAvoidingView, ScrollView, useColorScheme } from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, ScrollView, useColorScheme } from 'react-native'
 import { LayoutStyles } from '@/styles'
 import { AlertNotificationRoot } from 'react-native-alert-notification'
+import { UiNavbar } from '@/components/ui/Navbar'
+import { Colors } from '@/constants/Colors'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -35,9 +37,11 @@ export default function Layout() {
       <AlertNotificationRoot>
         <NativeBaseProvider >
           <KeyboardAvoidingView behavior='padding'>
-            <View style={LayoutStyles.rootContainer}>
+            <StatusBar backgroundColor={Colors.primary} />
+            <SafeAreaView style={LayoutStyles.rootContainer}>
+              <UiNavbar />
               <Slot />
-            </View>
+            </SafeAreaView>
           </KeyboardAvoidingView>
           <StatusBar style='auto' />
         </NativeBaseProvider >

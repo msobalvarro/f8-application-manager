@@ -109,11 +109,11 @@ export const CarousellStyle = StyleSheet.create({
   scroll: {
     flexDirection: 'row',
     overflowX: 'hidden',
+    // gap: 10,
   },
   image: {
-    width: WidthScreen * 0.85,
+    width: WidthScreen * 0.81,
     height: 250,
-    marginRight: 10,
     borderRadius: 10,
   },
 })
