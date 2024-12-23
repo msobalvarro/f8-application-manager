@@ -1,15 +1,14 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { useState } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { ImageInput } from '@/components/ImageInput'
-import { uploadImageService } from '@/services/uploadImage'
 import { Toast } from 'react-native-alert-notification'
+import { ProductImage } from '@/components/product/productImage'
 
 export default function NewProduct() {
   const [images, setImages] = useState<string[] | null>(null)
 
   const handleImage = async () => {
-
     if (!images) {
       Toast.show({ title: 'Please select an image' })
     } else {
@@ -19,15 +18,14 @@ export default function NewProduct() {
 
   return (
     <ContainerViewLayout scroll>
-      <ImageInput onChangeImages={setImages} />
+      <ImageInput onChangeImages={(data) => setImages([...(images || []), ...data])} />
 
-      <View>
+      <View style={styles.container}>
         {images?.map((image, i) =>
-          <Image
+          <ProductImage
+            onDelete={() => setImages(images.filter((_, index) => index !== i))}
             key={i}
-            source={{ uri: image }}
-            resizeMode='contain'
-            style={{ height: 512, width: 512 }} />)}
+            source={image} />)}
       </View>
     </ContainerViewLayout>
   )
@@ -35,13 +33,6 @@ export default function NewProduct() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    marginTop: 20,
+    gap: 20,
   },
 })

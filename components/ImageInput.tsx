@@ -27,6 +27,6 @@ export const ImageInput = ({ onChangeImages }: Props) => {
   }
 
   return (
-    <Button colorScheme='blueGray' onPress={handleImagePicker}>Select Image</Button>
+    <Button colorScheme='blueGray' onPress={handleImagePicker}>Agregar Fotos</Button>
   )
 }
