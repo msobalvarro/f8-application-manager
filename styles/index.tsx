@@ -117,3 +117,46 @@ export const CarousellStyle = StyleSheet.create({
     borderRadius: 10,
   },
 })
+
+export const ContainerLayoutStyles = StyleSheet.create({
+  container: {
+    backgroundColor: '#2c2c2c',
+    flex: 1,
+    boxSizing: 'border-box',
+    width: WidthScreen,
+    paddingBottom: HeightScreen * 0.05,
+    paddingHorizontal: WidthScreen * 0.05,
+  },
+  containerScroll: {
+    backgroundColor: '#2c2c2c',
+    boxSizing: 'border-box',
+    height: HeightScreen,
+    width: WidthScreen,
+    paddingBottom: HeightScreen * 0.05,
+  },
+  scroll: {
+    paddingHorizontal: WidthScreen * 0.05,
+    flexGrow: 1
+  }
+})
+
+export const TittleViewStyles = StyleSheet.create({
+  container: {
+    paddingVertical: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  containerTitle: {
+    gap: 10,
+  },
+  title: {
+    fontSize: 24,
+    color: '#FFF',
+  },
+  subtitle: {
+    paddingRight: 10,
+    fontSize: 16,
+    color: '#FFF',
+  },
+  button: {},
+})

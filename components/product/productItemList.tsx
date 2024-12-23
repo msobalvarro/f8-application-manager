@@ -1,7 +1,7 @@
 import { ProductsStyles as styles } from '@/styles'
 import { ProductsResponse } from '@/interfaces'
 import { Text, View } from 'react-native'
-import { CarousellProduct } from '../CarousellProduct'
+import { CarousellProduct } from '@/components/product/CarousellProduct'
 import { Button } from 'native-base'
 
 interface Props {
