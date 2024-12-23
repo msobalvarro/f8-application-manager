@@ -25,3 +25,7 @@ export interface ProductsPropierties {
 export interface ProductsResponse extends ProductsPropierties {
   _id: string
 }
+
+export interface FileUploadedResponse {
+  file: string
+}

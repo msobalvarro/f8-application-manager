@@ -15,7 +15,12 @@ export default function ProductsTab() {
 
   return (
     <ContainerViewLayout scroll isLoading={isLoading} onRefresh={refetch}>
-      <TitleView title='Productos' onClickAdd={onNewProduct} />
+      <View style={{ paddingVertical: 20 }}>
+        <TitleView
+          title='Productos'
+          subtitle='Administra todos tus productos, agrega nuevos productos y elimina los que ya no necesites'
+          onClickAdd={onNewProduct} />
+      </View>
 
       <View style={styles.productContainerList}>
         {data?.map(product => <ProductItem product={product} key={product._id} />)}

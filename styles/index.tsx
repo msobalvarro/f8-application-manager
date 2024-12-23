@@ -130,13 +130,12 @@ export const ContainerLayoutStyles = StyleSheet.create({
   containerScroll: {
     backgroundColor: '#2c2c2c',
     boxSizing: 'border-box',
-    height: HeightScreen,
+    flex:1,
     width: WidthScreen,
-    paddingBottom: HeightScreen * 0.05,
+    height: HeightScreen,
   },
   scroll: {
     paddingHorizontal: WidthScreen * 0.05,
-    flexGrow: 1
   }
 })
 
@@ -159,4 +158,27 @@ export const TittleViewStyles = StyleSheet.create({
     color: '#FFF',
   },
   button: {},
+})
+
+export const ProductImageStyles =  StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteButton: {
+    position: 'absolute',
+    borderRadius: 10,
+    top: 10,
+    left: 10,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    padding: 10,
+    zIndex: 1,
+  },
+  image: {
+    height: 200,
+    width: '100%',
+    zIndex: 0,
+  },
 })

@@ -1,19 +1,57 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import { ProductImage } from '@/components/product/productImage'
-import { Button, Input } from 'native-base'
+import { Button } from 'native-base'
 import { UiStyles } from '@/styles'
 import { TitleView } from '@/components/TitleView'
 import { handleImagePickerService } from '@/services/imagePicker'
 import { IconNewImage } from '@/components/Icons'
+import { createProductService } from '@/services/createProduct'
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 
 export default function NewProduct() {
+  const [loading, setLoading] = useState(false)
   const [images, setImages] = useState<string[]>([])
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
 
   const handleImage = async () => {
     const newImages = await handleImagePickerService()
     setImages([...images, ...newImages])
+  }
+
+  const submit = async () => {
+    setLoading(true)
+    try {
+      console.log({
+        imagesList: images,
+        description,
+        name,
+      })
+
+      const product = await createProductService({
+        imagesList: images,
+        description,
+        name,
+      })
+
+      Toast.show({
+        title: 'Producto Agregado',
+        type: ALERT_TYPE.SUCCESS,
+        textBody: 'El producto se ha agregado correctamente, haz click para ver',
+        onPress: () => console.log('click'),
+      })
+
+      console.log(product)
+    } catch (error) {
+      Toast.show({
+        title: String(error),
+        type: ALERT_TYPE.DANGER,
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -34,12 +72,20 @@ export default function NewProduct() {
         </View>
 
         <View style={styles.inputContainer}>
-          <Input style={UiStyles.InputStyle} placeholder='Nombre del Producto' />
+          <TextInput
+            onChangeText={setName}
+            style={UiStyles.InputStyle}
+            placeholder='Nombre del Producto' />
 
-          <Input multiline height={200} style={UiStyles.InputStyle} placeholder='Escriba una descripción del producto' />
+          <TextInput
+            onChangeText={setDescription}
+            multiline
+            numberOfLines={4}
+            style={UiStyles.InputStyle}
+            placeholder='Escriba una descripción del producto' />
         </View>
 
-        <Button colorScheme='blueGray'>Agregar Producto</Button>
+        <Button isLoading={loading} onPress={submit} colorScheme='blueGray'>Agregar Producto</Button>
       </View>
     </ContainerViewLayout>
   )
