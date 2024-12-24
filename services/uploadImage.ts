@@ -1,29 +1,23 @@
+import axios, { AxiosError } from 'axios'
 import { FileUploadedResponse } from '@/interfaces'
-import { axiosInstance } from './axiosInstance'
-import { AxiosError } from 'axios'
+import { serverAddress } from './axiosInstance'
 
-export const uploadImageService = async (image: string): Promise<string> => {
-  if (!image) throw new Error(`Image not found`)
+export const uploadImageService = async (uri: string): Promise<string> => {
+  if (!uri) throw new Error(`Image not found`)
 
   let formData = new FormData()
-  const fileName = image.split('/').pop(); // Extraer el nombre del archivo
-  const fileType = `image/${fileName?.split('.').pop()}`; // Determinar el tipo MIME
-
-  formData.append('file', {
-    uri: image,
-    name: fileName || 'upload.jpg',
-    type: fileType,
-  } as any)
+  const name = uri.split('/').pop()
+  const type = `image/${name?.split('.').pop()}`
+  formData.append('file', { uri, name, type } as any)
 
   try {
-    let { data } = await axiosInstance.post<FileUploadedResponse>(
-      '/files',
+    let { data } = await axios.post<FileUploadedResponse>(
+      `${serverAddress}/api/files`,
       formData,
       {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-
       }
     )
     return data.file

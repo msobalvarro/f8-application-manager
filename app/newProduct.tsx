@@ -9,8 +9,10 @@ import { handleImagePickerService } from '@/services/imagePicker'
 import { IconNewImage } from '@/components/Icons'
 import { createProductService } from '@/services/createProduct'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
+import { useRouter } from 'expo-router'
 
 export default function NewProduct() {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [images, setImages] = useState<string[]>([])
   const [name, setName] = useState('')
@@ -24,12 +26,6 @@ export default function NewProduct() {
   const submit = async () => {
     setLoading(true)
     try {
-      console.log({
-        imagesList: images,
-        description,
-        name,
-      })
-
       const product = await createProductService({
         imagesList: images,
         description,
@@ -44,6 +40,8 @@ export default function NewProduct() {
       })
 
       console.log(product)
+
+      router.navigate('/products')
     } catch (error) {
       Toast.show({
         title: String(error),
