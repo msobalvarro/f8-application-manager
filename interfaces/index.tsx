@@ -16,6 +16,7 @@ export interface PropsAxiosIntance {
 }
 
 export interface ProductsPropierties {
+  archived: boolean
   name: string
   description: string
   unitPrice: number

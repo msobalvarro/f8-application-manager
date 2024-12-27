@@ -18,9 +18,8 @@ export default function Product() {
   const { data, isLoading, refetch } = useAxios<ProductsResponse>({ endpoint: `/products?id=${id}` })
 
   useEffect(() => {
-    if (data?._id) {
-      setProduct(data)
-    }
+    console.log(data)
+    setProduct(data)
   }, [data])
 
   const deleteImage = (image: string) => {
@@ -44,6 +43,35 @@ export default function Product() {
           title: 'Producto Actualizado',
           type: ALERT_TYPE.SUCCESS,
           textBody: 'El producto se ha actualizado correctamente',
+        })
+
+        refetch()
+      }
+    } catch (error) {
+      Toast.show({
+        title: 'Error',
+        type: ALERT_TYPE.WARNING,
+        textBody: String(error)
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const updateArchived = async () => {
+    setLoading(true)
+
+    try {
+      if (product) {
+        await UpdateProductService({
+          ...product,
+          archived: !product.archived
+        })
+
+        Toast.show({
+          title: 'Producto Actualizado',
+          type: ALERT_TYPE.SUCCESS,
+          textBody: `El producto ${product.archived ? 'se ha activado' : 'se ha archivado'} correctamente`,
         })
 
         refetch()
@@ -104,7 +132,18 @@ export default function Product() {
                 colorScheme='green'>Guardar</Button>
             )}
 
-            <Button style={{ flex: 1 }} colorScheme='warning'>Archivar</Button>
+            {!product.archived
+              ? <Button
+                onPress={updateArchived}
+                style={{ flex: 1 }}
+                isLoading={loading || isLoading}
+                colorScheme='warning'>Archivar</Button>
+              : <Button
+                onPress={updateArchived}
+                style={{ flex: 1 }}
+                isLoading={loading || isLoading}
+                colorScheme='secondary'>Activar</Button>
+            }
           </View>
         </View>
       )}
