@@ -1,11 +1,12 @@
 import { ProductsResponse } from '@/interfaces'
 import { axiosInstance } from './axiosInstance'
 import { uploadImageService } from './uploadImage'
+import { ImagePickerAsset } from 'expo-image-picker'
 
 interface Props {
   name: string
   description: string
-  imagesList: string[]
+  imagesList: ImagePickerAsset[]
 }
 
 export const createProductService = async ({ imagesList, description, name }: Props): Promise<ProductsResponse> => {

@@ -22,7 +22,7 @@ export const UiStyles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     minWidth: 150,
-    color: Colors.dark.icon,
+    color: '#FFF',
     fontSize: 18,
     borderWidth: 1,
   },
@@ -73,6 +73,10 @@ export const ProductsStyles = StyleSheet.create({
   productContainerList: {
     gap: 50
   },
+  
+  inputContainer: {
+    gap: 20
+  },
 
   productContainer: {
     borderRadius: 10,
@@ -92,10 +96,10 @@ export const ProductsStyles = StyleSheet.create({
   },
 
   buttonContainer: {
-    marginTop: 20,
+    marginVertical: 20,
     flexDirection: 'row',
     gap: 10,
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
   },
 })
 
@@ -149,7 +153,8 @@ export const TittleViewStyles = StyleSheet.create({
     gap: 10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 34,
+    fontWeight: 'bold',
     color: '#FFF',
   },
   subtitle: {

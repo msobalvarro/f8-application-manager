@@ -5,11 +5,12 @@ import { IconAddMenu } from './Icons'
 interface Props {
   title: string
   subtitle?: string
-  onClickAdd: () => void
+  onClickAdd?: () => void
   Icon?: React.ReactElement
+  hiddenButton?: boolean
 }
 
-export const TitleView = ({ title, onClickAdd, Icon, subtitle }: Props) => {
+export const TitleView = ({ title, onClickAdd, Icon, subtitle, hiddenButton }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerTitle}>
@@ -17,9 +18,11 @@ export const TitleView = ({ title, onClickAdd, Icon, subtitle }: Props) => {
         {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={onClickAdd}>
-        {Icon || <IconAddMenu />}
-      </TouchableOpacity>
+      {!hiddenButton && (
+        <TouchableOpacity style={styles.button} onPress={onClickAdd}>
+          {Icon || <IconAddMenu />}
+        </TouchableOpacity>
+      )}
     </View>
   )
 }

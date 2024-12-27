@@ -19,7 +19,7 @@ export interface ProductsPropierties {
   name: string
   description: string
   unitPrice: number
-  images: [string]
+  images: string[]
 }
 
 export interface ProductsResponse extends ProductsPropierties {

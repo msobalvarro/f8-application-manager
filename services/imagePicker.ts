@@ -1,7 +1,7 @@
 import * as ImagePicker from 'expo-image-picker'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 
-export const handleImagePickerService = async (): Promise<string[]> => {
+export const handleImagePickerService = async (): Promise<ImagePicker.ImagePickerAsset[]> => {
   const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync()
 
   if (permissionResult.granted === false) {
@@ -17,7 +17,7 @@ export const handleImagePickerService = async (): Promise<string[]> => {
   const result = await ImagePicker.launchImageLibraryAsync({ allowsMultipleSelection: true })
 
   if (!result.canceled) {
-    return result.assets.map(image => image.uri)
+    return result.assets
   } else {
     return []
   }

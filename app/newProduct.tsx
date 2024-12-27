@@ -10,11 +10,12 @@ import { IconNewImage } from '@/components/Icons'
 import { createProductService } from '@/services/createProduct'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { useRouter } from 'expo-router'
+import { ImagePickerAsset } from 'expo-image-picker'
 
 export default function NewProduct() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const [images, setImages] = useState<string[]>([])
+  const [images, setImages] = useState<ImagePickerAsset[]>([])
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
@@ -66,7 +67,7 @@ export default function NewProduct() {
             <ProductImage
               onDelete={() => setImages(images.filter((_, index) => index !== i))}
               key={i}
-              source={image} />)}
+              source={image.uri} />)}
         </View>
 
         <View style={styles.inputContainer}>
