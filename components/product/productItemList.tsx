@@ -2,7 +2,7 @@ import { ProductsStyles as styles } from '@/styles'
 import { ProductsResponse } from '@/interfaces'
 import { Text, View } from 'react-native'
 import { CarousellProduct } from '@/components/product/CarousellProduct'
-import { Button } from 'native-base'
+import { Badge, Button } from 'native-base'
 import { useRouter } from 'expo-router'
 
 interface Props {
@@ -21,13 +21,16 @@ export const ProductItem = ({ product }: Props) => {
     <View style={styles.productContainer} key={product._id}>
       <CarousellProduct images={product.images} />
 
-      <Text style={styles.productTitle}>{product.name}</Text>
+      <View style={styles.containerTitle}>
+        <Text style={styles.productTitle}>
+          {product.name}
+        </Text>
+
+        {product.archived && <Badge colorScheme='danger' rounded='full'>Archivado</Badge>}
+      </View>
       <Text style={styles.description}>{product.description}</Text>
 
-      <View style={styles.buttonContainer}>
-        <Button onPress={handleEditProduct} colorScheme='coolGray'>Editar</Button>
-        <Button colorScheme='danger'>Eliminar</Button>
-      </View>
+      <Button onPress={handleEditProduct} colorScheme='emerald'>Editar</Button>
     </View>
   )
 }

@@ -1,5 +1,6 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { ProductItem } from '@/components/product/productItemList'
+import { ProductSkeleton } from '@/components/product/productSkeleton'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
 import { ProductsResponse } from '@/interfaces'
@@ -23,7 +24,11 @@ export default function ProductsTab() {
       </View>
 
       <View style={styles.productContainerList}>
-        {data?.map(product => <ProductItem product={product} key={product._id} />)}
+        {isLoading && (
+          <ProductSkeleton />
+        )}
+        
+        {!isLoading && data?.map(product => <ProductItem product={product} key={product._id} />)}
       </View>
     </ContainerViewLayout>
   )

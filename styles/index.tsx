@@ -73,7 +73,7 @@ export const ProductsStyles = StyleSheet.create({
   productContainerList: {
     gap: 50
   },
-  
+
   inputContainer: {
     gap: 20
   },
@@ -81,9 +81,15 @@ export const ProductsStyles = StyleSheet.create({
   productContainer: {
     borderRadius: 10,
     overflow: 'hidden',
-    backgroundColor: '#000',
+    borderColor: 'rgba(0,0,0, 0.2)',
+    borderWidth: 5,
     gap: 10,
     padding: 20,
+  },
+
+  containerTitle: {
+    flexDirection: 'row',
+    gap: 20,
   },
 
   productTitle: {
@@ -134,7 +140,7 @@ export const ContainerLayoutStyles = StyleSheet.create({
   containerScroll: {
     backgroundColor: '#2c2c2c',
     boxSizing: 'border-box',
-    flex:1,
+    flex: 1,
     width: WidthScreen,
     height: HeightScreen,
   },
@@ -165,7 +171,7 @@ export const TittleViewStyles = StyleSheet.create({
   button: {},
 })
 
-export const ProductImageStyles =  StyleSheet.create({
+export const ProductImageStyles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',

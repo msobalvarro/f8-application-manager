@@ -1,5 +1,6 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { ImageEditGalery } from '@/components/product/imageEditGalery'
+import { ProductSkeleton } from '@/components/product/productSkeleton'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
 import { ProductsResponse } from '@/interfaces'
@@ -96,7 +97,11 @@ export default function Product() {
           subtitle='Edita la informacion de tu producto, agrega nuevas imagenes, dale de baja' />
       </View>
 
-      {product && (
+      {isLoading && (
+        <ProductSkeleton />
+      )}
+
+      {(!isLoading && product) && (
         <View style={styles.productContainerList}>
           <ImageEditGalery images={product.images} onDelete={deleteImage} />
 
