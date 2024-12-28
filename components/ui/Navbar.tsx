@@ -2,7 +2,7 @@ import logo from '@/assets/images/logo/F8_Horizontal_Logo.png'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Colors } from '@/constants/Colors'
 import { usePathname, useRouter } from 'expo-router'
-import { IconBack } from '../Icons'
+import { IconBack, IconMenu } from '../Icons'
 
 
 export const UiNavbar = () => {
@@ -11,13 +11,21 @@ export const UiNavbar = () => {
 
   return (
     <View style={styles.container}>
-      {(router.canGoBack() && pathName !== '/products') && (
-        <TouchableOpacity onPress={() => router.back()}>
-          <IconBack />
+      <View style={styles.subContainer}>
+        {(router.canGoBack() && pathName !== '/products') && (
+          <TouchableOpacity onPress={() => router.back()}>
+            <IconBack />
+          </TouchableOpacity>
+        )}
+
+        <Image resizeMode='contain' style={styles.logo} source={logo} />
+      </View>
+
+      {pathName !== '/menu' && (
+        <TouchableOpacity onPress={() => router.navigate('/menu')}>
+          <IconMenu />
         </TouchableOpacity>
       )}
-
-      <Image resizeMode='contain' style={styles.logo} source={logo} />
     </View>
   )
 }
@@ -25,12 +33,18 @@ export const UiNavbar = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primary,
-    justifyContent: 'flex-start',
-    gap: 20,
+    justifyContent: 'space-between',
     paddingHorizontal: 20,
     flexDirection: 'row',
     paddingVertical: 10,
     alignItems: 'center',
+  },
+
+  subContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+    justifyContent: 'space-between',
   },
 
   logo: {
