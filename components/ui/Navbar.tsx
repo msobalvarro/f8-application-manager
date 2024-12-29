@@ -9,6 +9,8 @@ export const UiNavbar = () => {
   const router = useRouter()
   const pathName = usePathname()
 
+  if (pathName === '/') return null
+
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>

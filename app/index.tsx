@@ -7,6 +7,7 @@ import { ThemedText } from '@/components/ThemedText'
 import { authenticationService, getInitState } from '@/services/authentication'
 import { useRouter } from 'expo-router'
 import { useStore } from '@/hooks/useStore'
+import { ContainerViewLayout } from '@/components/ContainerView'
 
 export default function Login() {
   const store = useStore()
@@ -43,29 +44,33 @@ export default function Login() {
   }, [])
 
   return (
-    <Fragment>
-      <Image source={logo} alt='logo' style={styles.imageLogo} />
+    <ContainerViewLayout scroll>
+      <View style={styles.container}>
+        <Image source={logo} alt='logo' style={styles.imageLogo} />
 
-      <ThemedText style={{ fontSize: 24 }}>Inicia Sesión</ThemedText>
+        <ThemedText style={styles.title}>
+          Inicia Sesión en F8
+        </ThemedText>
 
-      <View style={styles.InputsContainer}>
-        <TextInput
-          placeholder='Usuario'
-          style={[UiStyles.InputStyle, { width: '100%' }]}
-          value={username}
-          keyboardType='default'
-          onChangeText={setUsername} />
+        <View style={styles.InputsContainer}>
+          <TextInput
+            placeholder='Usuario'
+            style={[UiStyles.InputStyle, { width: '100%' }]}
+            value={username}
+            keyboardType='default'
+            onChangeText={setUsername} />
 
-        <TextInput
-          placeholder='Contraseña'
-          style={[UiStyles.InputStyle, { width: '100%' }]}
-          value={password}
-          secureTextEntry
-          onChangeText={setPassword} />
+          <TextInput
+            placeholder='Contraseña'
+            style={[UiStyles.InputStyle, { width: '100%' }]}
+            value={password}
+            secureTextEntry
+            onChangeText={setPassword} />
 
+        </View>
+
+        <Button isLoading={loading} onPress={handleLogin}>Iniciar Sesión</Button>
       </View>
-
-      <Button isLoading={loading} onPress={handleLogin}>Iniciar Sesión</Button>
-    </Fragment>
+    </ContainerViewLayout>
   )
 }

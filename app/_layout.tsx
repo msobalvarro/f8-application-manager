@@ -36,13 +36,15 @@ export default function Layout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AlertNotificationRoot>
         <NativeBaseProvider >
-          <KeyboardAvoidingView behavior='padding'>
-            <StatusBar backgroundColor={Colors.primary} />
-            <SafeAreaView style={LayoutStyles.rootContainer}>
-              <UiNavbar />
-              <Slot />
-            </SafeAreaView>
-          </KeyboardAvoidingView>
+          <View style={{ flex: 1 }}>
+            <KeyboardAvoidingView behavior='padding'>
+              <StatusBar backgroundColor={Colors.primary} />
+              <SafeAreaView style={LayoutStyles.rootContainer}>
+                <UiNavbar />
+                <Slot />
+              </SafeAreaView>
+            </KeyboardAvoidingView>
+          </View>
           <StatusBar style='auto' />
         </NativeBaseProvider >
       </AlertNotificationRoot>

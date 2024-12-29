@@ -43,20 +43,24 @@ export const LoginStyles = StyleSheet.create({
     height: HeightScreen
   },
   container: {
-    backgroundColor: Colors.dark.background,
     gap: 20,
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    alignItems: 'stretch',
+    padding: 30,
   },
 
   InputsContainer: {
-    width: '70%',
     gap: 10,
   },
 
+  title: {
+    fontSize: 24,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  },
+
   imageLogo: {
+    alignSelf: 'center',
     width: 128,
     height: 128,
     resizeMode: 'contain',
