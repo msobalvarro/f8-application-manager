@@ -15,6 +15,7 @@ export const ContainerViewLayout = ({ children, scroll, isLoading, onRefresh }: 
     return (
       <View style={styles.containerScroll}>
         <ScrollView
+          keyboardShouldPersistTaps='always'
           refreshControl={(onRefresh) &&
             <RefreshControl
               refreshing={Boolean(isLoading)}

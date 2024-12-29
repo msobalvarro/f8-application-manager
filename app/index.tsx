@@ -1,13 +1,14 @@
 import logo from '@/assets/images/logo/logo.png'
-import { useState, Fragment, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { LoginStyles as styles, UiStyles } from '@/styles'
 import { TextInput, View } from 'react-native'
-import { Button, Image, useToast } from 'native-base'
+import { Button, Image } from 'native-base'
 import { ThemedText } from '@/components/ThemedText'
 import { authenticationService, getInitState } from '@/services/authentication'
 import { useRouter } from 'expo-router'
 import { useStore } from '@/hooks/useStore'
 import { ContainerViewLayout } from '@/components/ContainerView'
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 
 export default function Login() {
   const store = useStore()
@@ -15,17 +16,18 @@ export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, toggleLoading] = useState(false)
-  const toast = useToast()
 
   const handleLogin = async () => {
     toggleLoading(true)
 
     try {
       await authenticationService(username, password)
-      toast.show({ description: 'Session Inciada' })
     } catch (error) {
-      console.log(error)
-      toast.show({ description: String(error) })
+      Toast.show({
+        title: 'Error Authentication',
+        type: ALERT_TYPE.DANGER,
+        textBody: String(error),
+      })
     } finally {
       toggleLoading(false)
     }
