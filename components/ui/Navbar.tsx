@@ -13,7 +13,7 @@ export const UiNavbar = () => {
     <View style={styles.container}>
       <View style={styles.subContainer}>
         {(router.canGoBack() && pathName !== '/products') && (
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
             <IconBack />
           </TouchableOpacity>
         )}
@@ -22,7 +22,7 @@ export const UiNavbar = () => {
       </View>
 
       {pathName !== '/menu' && (
-        <TouchableOpacity onPress={() => router.navigate('/menu')}>
+        <TouchableOpacity  onPress={() => router.navigate('/menu')}>
           <IconMenu />
         </TouchableOpacity>
       )}
@@ -43,12 +43,21 @@ const styles = StyleSheet.create({
   subContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 20,
+    gap: 15,
     justifyContent: 'space-between',
   },
 
   logo: {
     width: 180,
     height: 40,
+  },
+  backButton: {
+    width: 50,
+    textAlign: 'center',
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 20
   },
 })

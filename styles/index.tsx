@@ -130,7 +130,7 @@ export const CarousellStyle = StyleSheet.create({
 
 export const ContainerLayoutStyles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c2c2c',
+    backgroundColor: Colors.backgroundLayout,
     flex: 1,
     boxSizing: 'border-box',
     width: WidthScreen,
@@ -138,7 +138,7 @@ export const ContainerLayoutStyles = StyleSheet.create({
     paddingHorizontal: WidthScreen * 0.05,
   },
   containerScroll: {
-    backgroundColor: '#2c2c2c',
+    backgroundColor: Colors.backgroundLayout,
     boxSizing: 'border-box',
     flex: 1,
     width: WidthScreen,
