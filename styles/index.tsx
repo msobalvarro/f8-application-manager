@@ -201,3 +201,22 @@ export const ProductImageStyles = StyleSheet.create({
     zIndex: 0,
   },
 })
+
+export const MenuStyles = StyleSheet.create({
+  container: {
+    paddingVertical: 30,
+  },
+  button: {
+    gap: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    borderBottomColor: 'rgba(255, 255, 255, 0.2)',
+    borderBottomWidth: 1,
+  },
+  text: {
+    color: '#FFF',
+    fontSize: 32,
+  },
+})
