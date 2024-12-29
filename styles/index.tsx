@@ -81,7 +81,7 @@ export const ProductsStyles = StyleSheet.create({
   productContainer: {
     borderRadius: 10,
     overflow: 'hidden',
-    borderColor: 'rgba(0,0,0, 0.2)',
+    borderColor: 'rgba(255,255,255, 0.2)',
     borderWidth: 5,
     gap: 10,
     padding: 20,
@@ -161,7 +161,7 @@ export const TittleViewStyles = StyleSheet.create({
   title: {
     fontSize: 34,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: Colors.primary,
   },
   subtitle: {
     paddingRight: 10,
