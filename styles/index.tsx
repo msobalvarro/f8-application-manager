@@ -235,6 +235,7 @@ export const PreferenceStyles = StyleSheet.create({
 export const MessageStyles = StyleSheet.create({
   container: {
     paddingVertical: 20,
+    gap: 20
   }
 })
 
