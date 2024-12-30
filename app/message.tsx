@@ -1,21 +1,31 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { MessageCard } from '@/components/message/itemMessage'
+import { MessageSkeleton } from '@/components/message/messageSkeleton'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
 import { MessagesResponse } from '@/interfaces'
 import { MessageStyles as styles, UiStyles } from '@/styles'
+import { Checkbox } from 'native-base'
 import { useState } from 'react'
-import { TextInput, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
 
 export default function MessageView() {
-  const { data, isLoading, refetch } = useAxios<MessagesResponse[]>({ endpoint: '/message' })
+  const [showArchive, toggleArchive] = useState(false)
   const [filter, setFiter] = useState('')
+  const { data, isLoading, refetch } = useAxios<MessagesResponse[]>({
+    endpoint: `/message?archived=${showArchive}`
+  })
 
   const dataFilter = data?.filter((message) =>
     `${message.fullName} ${message.email} ${message.phoneNumber}`
       .toLowerCase()
       .includes(filter.toLowerCase())
   )
+
+  const onChangeArchived = () => {
+    toggleArchive(!showArchive)
+    refetch()
+  }
 
   return (
     <ContainerViewLayout scroll isLoading={isLoading} onRefresh={refetch}>
@@ -25,15 +35,22 @@ export default function MessageView() {
           title='Mensajes'
           subtitle='Recibe y administras a tus consultas y solicitudes' />
 
+        <Checkbox isDisabled={isLoading} isChecked={showArchive} onChange={onChangeArchived} value='archived'>
+          <Text style={{ color: '#CCC', fontSize: 16 }}>Mostrar solo mensajes archivados</Text>
+        </Checkbox>
+
         <TextInput
-          placeholder='Filtrar por Nombre, correo, número telefónico'
-          style={[UiStyles.InputStyle, { width: '100%' }]}
+          placeholder='Filtrar por nombre, correo, telefónico'
+          style={[UiStyles.InputStyle, { width: '100%', fontSize: 20 }]}
           value={filter}
           keyboardType='default'
           onChangeText={setFiter} />
 
         <View style={{ gap: 20 }}>
-          {dataFilter?.map((data, i) => (<MessageCard refetch={refetch} message={data} key={i} />))}
+
+          {isLoading && <MessageSkeleton />}
+
+          {!isLoading && dataFilter?.map((message, i) => (<MessageCard refetch={refetch} message={message} key={i} />))}
         </View>
       </View>
     </ContainerViewLayout>
