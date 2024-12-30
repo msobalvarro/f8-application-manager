@@ -35,8 +35,7 @@ export default function Login() {
 
   useEffect(() => {
     if (store.isAuth) {
-      router.push('/products')
-      // toast.show({ description: 'Sesión Iniciada' })
+      router.push('/menu')
       toggleLoading(false)
     }
   }, [store])

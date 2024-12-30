@@ -11,4 +11,8 @@ export const IconProductListMenu = () => <IconIonic name='list' size={32} color=
 export const IconPreference = () => <IconIonic name='settings' size={32} color={Colors.light.background} />
 export const IconCreateProductMenu = () => <IconIonic name='create' size={32} color={Colors.light.background} />
 export const IconLogoutProductMenu = () => <IconIonic name='lock-closed' size={32} color={Colors.light.background} />
+export const IconMessageMenu = () => <IconIonic name='chatbubble-ellipses' size={32} color={Colors.light.background} />
+export const IconWhatsapp = () => <IconFontAwsome name='whatsapp' size={24} color={Colors.light.background} />
+export const IconCallPhone = () => <IconFontAwsome name='phone' size={24} color={Colors.light.background} />
+export const IconMail = () => <IconIonic name='mail-unread-outline' size={24} color={Colors.light.background} />
 
