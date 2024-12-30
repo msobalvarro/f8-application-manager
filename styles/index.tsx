@@ -157,6 +157,7 @@ export const TittleViewStyles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
   containerTitle: {
@@ -228,5 +229,93 @@ export const MenuStyles = StyleSheet.create({
 export const PreferenceStyles = StyleSheet.create({
   containerList: {
     gap: 20,
+  }
+})
+
+export const MessageStyles = StyleSheet.create({
+  container: {
+    paddingVertical: 20,
+  }
+})
+
+export const MessageItemStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  card: {
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 10,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  header: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  subHeader: {
+    fontSize: 14,
+    color: '#777',
+    marginVertical: 5,
+  },
+  detailContainer: {
+    flexDirection: 'row',
+    marginVertical: 5,
+  },
+  detailTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#555',
+    width: 80,
+  },
+  detailText: {
+    fontSize: 14,
+    color: '#333',
+  },
+  messageContainer: {
+    marginVertical: 10,
+  },
+  messageTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#555',
+  },
+  messageText: {
+    fontSize: 14,
+    color: '#333',
+    marginTop: 5,
+    lineHeight: 20,
+  },
+
+  containerButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 20,
+  },
+})
+
+export const ContactButtonsStyles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: Colors.primary,
+    padding: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    flex: 1,
   }
 })

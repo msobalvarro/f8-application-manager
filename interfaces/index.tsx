@@ -39,3 +39,14 @@ export interface PreferencesPropierties {
 export interface PreferenceResponse extends PreferencesPropierties {
   _id: string
 }
+
+export interface MessagesResponse {
+  _id: string
+  fullName: string
+  company: string
+  email: string
+  phoneNumber: string
+  message: string
+  archived?: boolean
+}
+

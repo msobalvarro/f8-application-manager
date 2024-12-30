@@ -4,7 +4,6 @@ import { Colors } from '@/constants/Colors'
 import { usePathname, useRouter } from 'expo-router'
 import { IconBack, IconMenu } from '../Icons'
 
-
 export const UiNavbar = () => {
   const router = useRouter()
   const pathName = usePathname()
@@ -14,7 +13,7 @@ export const UiNavbar = () => {
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
-        {(router.canGoBack() && pathName !== '/products') && (
+        {(router.canGoBack() && pathName !== '/menu') && (
           <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
             <IconBack />
           </TouchableOpacity>
@@ -24,7 +23,7 @@ export const UiNavbar = () => {
       </View>
 
       {pathName !== '/menu' && (
-        <TouchableOpacity  onPress={() => router.navigate('/menu')}>
+        <TouchableOpacity onPress={() => router.navigate('/menu')}>
           <IconMenu />
         </TouchableOpacity>
       )}
