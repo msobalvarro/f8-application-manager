@@ -37,13 +37,13 @@ export default function Layout() {
       <AlertNotificationRoot>
         <NativeBaseProvider >
           <View style={{ flex: 1 }}>
-            <KeyboardAvoidingView behavior='padding'>
-              <StatusBar backgroundColor={Colors.primary} />
-              <SafeAreaView style={LayoutStyles.rootContainer}>
-                <UiNavbar />
+            <StatusBar backgroundColor={Colors.primary} />
+            <SafeAreaView style={LayoutStyles.rootContainer}>
+              <UiNavbar />
+              <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding'>
                 <Slot />
-              </SafeAreaView>
-            </KeyboardAvoidingView>
+              </KeyboardAvoidingView>
+            </SafeAreaView>
           </View>
           <StatusBar style='auto' />
         </NativeBaseProvider >

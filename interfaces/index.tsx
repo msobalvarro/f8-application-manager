@@ -30,3 +30,12 @@ export interface ProductsResponse extends ProductsPropierties {
 export interface FileUploadedResponse {
   file: string
 }
+
+export interface PreferencesPropierties {
+  key: string
+  value: string
+}
+
+export interface PreferenceResponse extends PreferencesPropierties {
+  _id: string
+}

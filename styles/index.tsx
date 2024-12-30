@@ -224,3 +224,9 @@ export const MenuStyles = StyleSheet.create({
     fontSize: 32,
   },
 })
+
+export const PreferenceStyles = StyleSheet.create({
+  containerList: {
+    gap: 20,
+  }
+})
