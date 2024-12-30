@@ -11,12 +11,7 @@ import { useState } from 'react'
 
 export default function Preference() {
   const { data, isLoading, refetch } = useAxios<PreferenceResponse[]>({ endpoint: '/preferences' })
-  const [loading, setLoading] = useState(false)
   const [showModal, toggleModal] = useState(false)
-
-  const update = async () => {
-
-  }
 
   return (
     <ContainerViewLayout scroll onRefresh={refetch} isLoading={isLoading}>
@@ -30,7 +25,7 @@ export default function Preference() {
 
         <View style={styles.containerList}>
           {!isLoading && data?.map((data, i) => (
-            <ItemPreference preference={data} key={i} />
+            <ItemPreference refetch={refetch} preference={data} key={i} />
           ))}
         </View>
 

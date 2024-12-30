@@ -1,17 +1,38 @@
 import { Colors } from '@/constants/Colors'
 import { PreferenceResponse, PreferencesPropierties } from '@/interfaces'
+import { updatePreferenceService } from '@/services/updatePreference'
 import { UiStyles } from '@/styles'
 import { Button } from 'native-base'
 import { useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 
 interface Props {
   preference: PreferenceResponse
-  // onChange: (value: any) => void
+  refetch: () => void
 }
 
-export const ItemPreference = ({ preference }: Props) => {
+export const ItemPreference = ({ preference,refetch }: Props) => {
+  const [loading, setLoading] = useState(false)
   const [dataForm, setData] = useState<PreferenceResponse>(preference)
+
+  const handleUpdate = async () => {
+    setLoading(true)
+
+    try {
+      await updatePreferenceService(dataForm)
+
+      refetch()
+    } catch (error) {
+      Toast.show({
+        type: ALERT_TYPE.WARNING,
+        title: 'Error al actualizar preferencia',
+        textBody: String(error)
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -32,7 +53,12 @@ export const ItemPreference = ({ preference }: Props) => {
       </View>
 
       {dataForm !== preference && (
-        <Button colorScheme='blueGray'>Actualizar</Button>
+        <Button
+          isLoading={loading}
+          colorScheme='green'
+          onPress={handleUpdate}>
+          Actualizar
+        </Button>
       )}
     </View>
   )
