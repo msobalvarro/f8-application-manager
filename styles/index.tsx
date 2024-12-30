@@ -258,6 +258,10 @@ export const MessageItemStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
+  time: {
+    fontSize: 14,
+    color: '#2D2D2D',
+  },
   subHeader: {
     fontSize: 14,
     color: '#777',

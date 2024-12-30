@@ -2,12 +2,14 @@
 import { MessagesResponse } from '@/interfaces'
 import { MessageItemStyles as styles } from '@/styles'
 import { Button } from 'native-base'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { ContactButtons } from './contactCard'
-import { axiosInstance } from '@/services/axiosInstance'
-import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { useState } from 'react'
 import { handledArchiveMessage, handleDeleteMessage } from '@/services/messageServices'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 interface Props {
   message: MessagesResponse
@@ -31,6 +33,7 @@ export const MessageCard = ({ message, refetch }: Props) => {
     <ScrollView style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.header}>Message from {message.fullName}</Text>
+        <Text style={styles.time}>{dayjs(message.createdAt).fromNow()}</Text>
         <Text style={styles.subHeader}>{message.company}</Text>
 
         <View style={styles.detailContainer}>
