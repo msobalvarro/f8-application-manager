@@ -48,5 +48,5 @@ export interface MessagesResponse {
   phoneNumber: string
   message: string
   archived?: boolean
+  createdAt: string
 }
-

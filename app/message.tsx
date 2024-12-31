@@ -51,6 +51,12 @@ export default function MessageView() {
           {isLoading && <MessageSkeleton />}
 
           {!isLoading && dataFilter?.map((message, i) => (<MessageCard refetch={refetch} message={message} key={i} />))}
+
+          {!isLoading && dataFilter?.length == 0 && (
+            <Text style={{ color: 'rgba(255, 255, 255, 0.3)', fontSize: 24, alignSelf: 'center' }}>
+              No hay Mensajes
+            </Text>
+          )}
         </View>
       </View>
     </ContainerViewLayout>

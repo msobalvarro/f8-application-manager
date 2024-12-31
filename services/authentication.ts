@@ -33,4 +33,8 @@ export const getInitState = async () => {
   }
 }
 
-export const getToken = async (): Promise<string | null> => await AsyncStorage.getItem('token')
+export const getToken = async (): Promise<string | null> => {
+  const token = await AsyncStorage.getItem('token')
+
+  return token
+}
