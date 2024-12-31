@@ -32,15 +32,15 @@ export default function Layout() {
   useEffect(() => {
     registerSocketTask()
 
-    const interval = setInterval(() => {
-      if (socket.connected) {
-        socket.emit('ping');
-      } else {
-        socket.connect();
-      }
-    }, 10000); // Cada 10 segundos
+    // const interval = setInterval(() => {
+    //   if (socket.connected) {
+    //     socket.emit('ping');
+    //   } else {
+    //     socket.connect();
+    //   }
+    // }, 10000); // Cada 10 segundos
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [])
 
   useEffect(() => {
@@ -73,6 +73,7 @@ export default function Layout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <StatusBar hidden />
       <AlertNotificationRoot>
         <NativeBaseProvider >
           <View style={{ flex: 1 }}>
@@ -84,7 +85,6 @@ export default function Layout() {
               </KeyboardAvoidingView>
             </SafeAreaView>
           </View>
-          <StatusBar style='auto' />
         </NativeBaseProvider >
       </AlertNotificationRoot>
     </ThemeProvider >

@@ -21,22 +21,22 @@ export const useNotifications = () => {
 
     // Listener para recibir notificaciones en primer plano
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      console.log('Notificación recibida:', notification);
-    });
+      console.log('Notificación recibida:', notification)
+    })
 
     // Listener para manejar interacciones con notificaciones
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log('Interacción con la notificación:', response);
-    });
+      console.log('Interacción con la notificación:', response)
+    })
 
     return () => {
       if (notificationListener.current) {
-        Notifications.removeNotificationSubscription(notificationListener.current);
+        Notifications.removeNotificationSubscription(notificationListener.current)
       }
       if (responseListener.current) {
-        Notifications.removeNotificationSubscription(responseListener.current);
+        Notifications.removeNotificationSubscription(responseListener.current)
       }
-    };
+    }
   }, [])
 
   async function newMessageNotification(message: MessagesResponse) {
@@ -62,25 +62,23 @@ export const useNotifications = () => {
 }
 
 export async function registerForPushNotificationsAsync() {
-  let token;
+  let token
   if (Device.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
+    const { status: existingStatus } = await Notifications.getPermissionsAsync()
+    let finalStatus = existingStatus
 
     if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
+      const { status } = await Notifications.requestPermissionsAsync()
+      finalStatus = status
     }
 
     if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
+      alert('Failed to get push token for push notification!')
+      return
     }
 
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log('Expo Push Token:', token);
-  } else {
-    alert('Must use physical device for Push Notifications');
+    token = (await Notifications.getExpoPushTokenAsync()).data
+    console.log('Expo Push Token:', token)
   }
 
   if (Platform.OS === 'android') {
@@ -89,8 +87,8 @@ export async function registerForPushNotificationsAsync() {
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: '#FF231F7C',
-    });
+    })
   }
 
-  return token;
+  return token
 }

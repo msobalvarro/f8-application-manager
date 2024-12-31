@@ -55,8 +55,8 @@ export const LoginStyles = StyleSheet.create({
 
   title: {
     fontSize: 24,
+    color: 'white',
     alignSelf: 'center',
-    fontWeight: 'bold',
   },
 
   imageLogo: {
@@ -161,6 +161,7 @@ export const TittleViewStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   containerTitle: {
+    flex: 1,
     gap: 10,
   },
   title: {
@@ -173,7 +174,9 @@ export const TittleViewStyles = StyleSheet.create({
     fontSize: 16,
     color: '#FFF',
   },
-  button: {},
+  button: {
+    paddingLeft: 20,
+  },
 })
 
 export const ProductImageStyles = StyleSheet.create({

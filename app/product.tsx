@@ -13,13 +13,12 @@ import { TextInput, View } from 'react-native'
 import { Toast, ALERT_TYPE } from 'react-native-alert-notification'
 
 export default function Product() {
+  const [product, setProduct] = useState<ProductsResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const { id } = useLocalSearchParams<{ id: string }>()
-  const [product, setProduct] = useState<ProductsResponse | null>(null)
   const { data, isLoading, refetch } = useAxios<ProductsResponse>({ endpoint: `/products?id=${id}` })
 
   useEffect(() => {
-    console.log(data)
     setProduct(data)
   }, [data])
 
@@ -107,6 +106,7 @@ export default function Product() {
 
           <View style={styles.inputContainer}>
             <TextInput
+              placeholderTextColor='#CCC'
               onChangeText={v => setProduct({
                 ...product,
                 name: v
@@ -116,6 +116,7 @@ export default function Product() {
               placeholder='Nombre del Producto' />
 
             <TextInput
+              placeholderTextColor='#CCC'
               onChangeText={v => setProduct({
                 ...product,
                 description: v
