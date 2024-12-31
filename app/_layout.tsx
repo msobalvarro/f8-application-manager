@@ -12,7 +12,7 @@ import { LayoutStyles } from '@/styles'
 import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification'
 import { UiNavbar } from '@/components/ui/Navbar'
 import { Colors } from '@/constants/Colors'
-import { socket } from '@/services/socketService'
+import { registerSocketTask, socket } from '@/services/socketService'
 import { useStore } from '@/hooks/useStore'
 import { MessagesResponse } from '@/interfaces'
 import { useNotifications } from '@/hooks/useNotification'
@@ -21,7 +21,7 @@ import { useNotifications } from '@/hooks/useNotification'
 SplashScreen.preventAutoHideAsync()
 
 export default function Layout() {
-  const notification = useNotifications()
+  const { newMessageNotification } = useNotifications()
   const router = useRouter()
   const store = useStore()
   const colorScheme = useColorScheme()
@@ -30,9 +30,23 @@ export default function Layout() {
   })
 
   useEffect(() => {
+    registerSocketTask()
+
+    const interval = setInterval(() => {
+      if (socket.connected) {
+        socket.emit('ping');
+      } else {
+        socket.connect();
+      }
+    }, 10000); // Cada 10 segundos
+
+    return () => clearInterval(interval);
+  }, [])
+
+  useEffect(() => {
     if (store.isAuth) {
       socket.on('newMessage', (data: MessagesResponse) => {
-        notification(data)
+        newMessageNotification(data)
       })
 
       socket.on('disconnect', (data) => {
