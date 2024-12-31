@@ -2,6 +2,7 @@ import * as Notifications from 'expo-notifications'
 import * as Device from 'expo-device'
 import { useEffect, useRef } from 'react'
 import { Platform } from 'react-native'
+import { MessagesResponse } from '@/interfaces'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -38,11 +39,11 @@ export const useNotifications = () => {
     };
   }, [])
 
-  async function schedulePushNotification() {
+  async function newMessageNotification(message: MessagesResponse) {
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "You've got message! 📬",
-        body: 'Here is the notification body',
+        title: `📬 Nuevo mensaje de ${message.fullName}`,
+        body: message.message,
         data: {
           data: 'goes here',
           test: {
@@ -57,7 +58,7 @@ export const useNotifications = () => {
     })
   }
 
-  return schedulePushNotification
+  return { newMessageNotification }
 }
 
 export async function registerForPushNotificationsAsync() {

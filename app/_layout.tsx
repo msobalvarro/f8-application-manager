@@ -15,11 +15,13 @@ import { Colors } from '@/constants/Colors'
 import { socket } from '@/services/socketService'
 import { useStore } from '@/hooks/useStore'
 import { MessagesResponse } from '@/interfaces'
+import { useNotifications } from '@/hooks/useNotification'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function Layout() {
+  const notification = useNotifications()
   const router = useRouter()
   const store = useStore()
   const colorScheme = useColorScheme()
@@ -30,15 +32,7 @@ export default function Layout() {
   useEffect(() => {
     if (store.isAuth) {
       socket.on('newMessage', (data: MessagesResponse) => {
-        console.log(data)
-        Toast.show({
-          title: `Nuevo mensaje de ${data.fullName}`,
-          textBody: 'Haz click para ver los mensajes recibidos',
-          type: ALERT_TYPE.INFO,
-          onPress: () => {
-            router.navigate('/message')
-          }
-        })
+        notification(data)
       })
 
       socket.on('disconnect', (data) => {
