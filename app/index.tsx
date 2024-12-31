@@ -1,7 +1,7 @@
 import logo from '@/assets/images/logo/logo.png'
 import { useState, useEffect } from 'react'
 import { LoginStyles as styles, UiStyles } from '@/styles'
-import { TextInput, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
 import { Button, Image } from 'native-base'
 import { ThemedText } from '@/components/ThemedText'
 import { authenticationService, getInitState } from '@/services/authentication'
@@ -49,12 +49,13 @@ export default function Login() {
       <View style={styles.container}>
         <Image source={logo} alt='logo' style={styles.imageLogo} />
 
-        <ThemedText style={styles.title}>
+        <Text style={styles.title}>
           Inicia Sesión en F8
-        </ThemedText>
+        </Text>
 
         <View style={styles.InputsContainer}>
           <TextInput
+            placeholderTextColor='#CCC'
             placeholder='Usuario'
             style={[UiStyles.InputStyle, { width: '100%' }]}
             value={username}
@@ -62,6 +63,7 @@ export default function Login() {
             onChangeText={setUsername} />
 
           <TextInput
+            placeholderTextColor='#CCC'
             placeholder='Contraseña'
             style={[UiStyles.InputStyle, { width: '100%' }]}
             value={password}

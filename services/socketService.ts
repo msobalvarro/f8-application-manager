@@ -1,7 +1,11 @@
+import * as TaskManager from 'expo-task-manager'
+import * as BackgroundFetch from 'expo-background-fetch'
 import { io } from 'socket.io-client'
 import { SERVER_HOST } from '../hooks/useFetch'
-import { store } from '@/store'
 import { getToken } from './authentication'
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
+
+const SOCKET_TASK = 'background-socket-task'
 
 const token = (async () => await getToken())()
 
@@ -11,5 +15,30 @@ export const socket = io(SERVER_HOST, {
 })
 
 socket.on('connect', () => {
+  Toast.show({
+    title: 'Conectado',
+    textBody: 'Conectado al servidor',
+    type: ALERT_TYPE.SUCCESS,
+  })
   console.log(socket.id)
 })
+
+TaskManager.defineTask(SOCKET_TASK, async () => {
+  try {
+    if (!socket.connected) {
+      socket.connect()
+    }
+
+    return BackgroundFetch.BackgroundFetchResult.NewData
+  } catch (error) {
+    return BackgroundFetch.BackgroundFetchResult.Failed
+  }
+})
+
+export async function registerSocketTask() {
+  await BackgroundFetch.registerTaskAsync(SOCKET_TASK, {
+    minimumInterval: 15, // Intervalo mínimo en segundos
+    stopOnTerminate: false,
+    startOnBoot: true,
+  })
+}

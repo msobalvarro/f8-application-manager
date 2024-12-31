@@ -1,7 +1,7 @@
 
 import { MessagesResponse } from '@/interfaces'
 import { MessageItemStyles as styles } from '@/styles'
-import { Button } from 'native-base'
+import { Badge, Button } from 'native-base'
 import { View, Text, ScrollView } from 'react-native'
 import { ContactButtons } from './contactCard'
 import { useState } from 'react'
@@ -30,6 +30,12 @@ export const MessageCard = ({ message, refetch }: Props) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.card}>
+        {message?.archived && (
+          <View style={{ alignItems: 'flex-start' }}>
+            <Badge borderRadius='full' children='Archivado' colorScheme='blue' />
+          </View>
+        )}
+
         <Text style={styles.header}>Message from {message.fullName}</Text>
         <Text style={styles.time}>{dayjs(message.createdAt).fromNow()}</Text>
         <Text style={styles.subHeader}>{message.company}</Text>

@@ -43,6 +43,7 @@ export const handleDeleteMessage = async (_id: string, setLoading: (v: boolean) 
             await axiosInstance.put('/message', { _id })
 
             Toast.show({
+              title: 'Eliminado',
               textBody: 'El mensaje ha sido Elimado',
               type: ALERT_TYPE.SUCCESS,
             })
@@ -50,6 +51,7 @@ export const handleDeleteMessage = async (_id: string, setLoading: (v: boolean) 
             refetch()
           } catch (error) {
             Toast.show({
+              title: 'Error',
               textBody: 'Error al archivar el mensaje',
               type: ALERT_TYPE.WARNING,
             })

@@ -72,11 +72,13 @@ export default function NewProduct() {
 
         <View style={styles.inputContainer}>
           <TextInput
+            placeholderTextColor='#CCC'
             onChangeText={setName}
             style={UiStyles.InputStyle}
             placeholder='Nombre del Producto' />
 
           <TextInput
+            placeholderTextColor='#CCC'
             onChangeText={setDescription}
             multiline
             numberOfLines={4}

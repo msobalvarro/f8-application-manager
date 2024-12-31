@@ -5,7 +5,7 @@ export const NewPreference = () => {
   return (
     <Modal visible statusBarTranslucent shouldRasterizeIOS presentationStyle='overFullScreen'>
       <View>
-        <TextInput style={UiStyles.InputStyle} placeholder='Nuevo Preferencia' />
+        <TextInput placeholderTextColor='#CCC' style={UiStyles.InputStyle} placeholder='Nuevo Preferencia' />
       </View>
     </Modal>
   )

@@ -12,7 +12,7 @@ interface Props {
   refetch: () => void
 }
 
-export const ItemPreference = ({ preference,refetch }: Props) => {
+export const ItemPreference = ({ preference, refetch }: Props) => {
   const [loading, setLoading] = useState(false)
   const [dataForm, setData] = useState<PreferenceResponse>(preference)
 
@@ -39,6 +39,7 @@ export const ItemPreference = ({ preference,refetch }: Props) => {
       <View style={styles.subContainer}>
         <Text style={styles.textLabel}>Key</Text>
         <TextInput
+          placeholderTextColor='#CCC'
           onChangeText={key => setData({ ...dataForm, key })}
           style={UiStyles.InputStyle}
           value={dataForm.key} />
@@ -47,6 +48,7 @@ export const ItemPreference = ({ preference,refetch }: Props) => {
       <View style={[styles.subContainer, { flex: 1 }]}>
         <Text style={styles.textLabel}>Value</Text>
         <TextInput
+          placeholderTextColor='#CCC'
           style={UiStyles.InputStyle}
           onChangeText={value => setData({ ...dataForm, value })}
           value={dataForm.value} />

@@ -12,14 +12,16 @@ import { LayoutStyles } from '@/styles'
 import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification'
 import { UiNavbar } from '@/components/ui/Navbar'
 import { Colors } from '@/constants/Colors'
-import { socket } from '@/services/socketService'
+import { registerSocketTask, socket } from '@/services/socketService'
 import { useStore } from '@/hooks/useStore'
 import { MessagesResponse } from '@/interfaces'
+import { useNotifications } from '@/hooks/useNotification'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
 export default function Layout() {
+  const { newMessageNotification } = useNotifications()
   const router = useRouter()
   const store = useStore()
   const colorScheme = useColorScheme()
@@ -28,17 +30,23 @@ export default function Layout() {
   })
 
   useEffect(() => {
+    registerSocketTask()
+
+    // const interval = setInterval(() => {
+    //   if (socket.connected) {
+    //     socket.emit('ping');
+    //   } else {
+    //     socket.connect();
+    //   }
+    // }, 10000); // Cada 10 segundos
+
+    // return () => clearInterval(interval);
+  }, [])
+
+  useEffect(() => {
     if (store.isAuth) {
       socket.on('newMessage', (data: MessagesResponse) => {
-        console.log(data)
-        Toast.show({
-          title: `Nuevo mensaje de ${data.fullName}`,
-          textBody: 'Haz click para ver los mensajes recibidos',
-          type: ALERT_TYPE.INFO,
-          onPress: () => {
-            router.navigate('/message')
-          }
-        })
+        newMessageNotification(data)
       })
 
       socket.on('disconnect', (data) => {
@@ -65,6 +73,7 @@ export default function Layout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <StatusBar hidden />
       <AlertNotificationRoot>
         <NativeBaseProvider >
           <View style={{ flex: 1 }}>
@@ -76,7 +85,6 @@ export default function Layout() {
               </KeyboardAvoidingView>
             </SafeAreaView>
           </View>
-          <StatusBar style='auto' />
         </NativeBaseProvider >
       </AlertNotificationRoot>
     </ThemeProvider >
