@@ -2,7 +2,7 @@ import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { axiosInstance } from './axiosInstance'
 import { Alert } from 'react-native'
 
-export const handledArchiveMessage = async (_id: string, setLoading: (v: boolean) => void) => {
+export const handledArchiveMessage = async (_id: string, setLoading: (v: boolean) => void, refetch: () => void) => {
   setLoading(true)
 
   try {
@@ -12,6 +12,8 @@ export const handledArchiveMessage = async (_id: string, setLoading: (v: boolean
       textBody: 'El mensaje ha sido archivado',
       type: ALERT_TYPE.SUCCESS,
     })
+
+    refetch()
   } catch (error) {
     Toast.show({
       textBody: 'Error al archivar el mensaje',
@@ -22,7 +24,7 @@ export const handledArchiveMessage = async (_id: string, setLoading: (v: boolean
   }
 }
 
-export const handleDeleteMessage = async (_id: string, setLoading: (v: boolean) => void) => {
+export const handleDeleteMessage = async (_id: string, setLoading: (v: boolean) => void, refetch: () => void) => {
   Alert.alert(
     'Eliminar Mensaje',
     'Al eliminar el mensaje no se podrá recuperar la información',
@@ -44,6 +46,8 @@ export const handleDeleteMessage = async (_id: string, setLoading: (v: boolean) 
               textBody: 'El mensaje ha sido Elimado',
               type: ALERT_TYPE.SUCCESS,
             })
+
+            refetch()
           } catch (error) {
             Toast.show({
               textBody: 'Error al archivar el mensaje',

@@ -9,11 +9,9 @@ import { useRouter } from 'expo-router'
 import { useStore } from '@/hooks/useStore'
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
-import { useNotifications } from '@/hooks/useNotification'
 
 export default function Login() {
   const store = useStore()
-  const notification = useNotifications()
   const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -23,8 +21,7 @@ export default function Login() {
     toggleLoading(true)
 
     try {
-      await notification()
-      // await authenticationService(username, password)
+      await authenticationService(username, password)
     } catch (error) {
       Toast.show({
         title: 'Error Authentication',

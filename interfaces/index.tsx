@@ -50,4 +50,3 @@ export interface MessagesResponse {
   archived?: boolean
   createdAt: string
 }
-

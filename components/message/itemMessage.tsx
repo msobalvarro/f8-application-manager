@@ -20,13 +20,11 @@ export const MessageCard = ({ message, refetch }: Props) => {
   const [loading, setLoading] = useState(false)
 
   const handleDelete = async () => {
-    await handleDeleteMessage(message._id, setLoading)
-    refetch()
+    await handleDeleteMessage(message._id, setLoading, refetch)
   }
 
   const handledArchive = async () => {
-    await handledArchiveMessage(message._id, setLoading)
-    refetch()
+    await handledArchiveMessage(message._id, setLoading, refetch)
   }
 
   return (
@@ -38,17 +36,17 @@ export const MessageCard = ({ message, refetch }: Props) => {
 
         <View style={styles.detailContainer}>
           <Text style={styles.detailTitle}>Email:</Text>
-          <Text style={styles.detailText}>{message.email}</Text>
+          <Text style={styles.detailText} selectable>{message.email}</Text>
         </View>
 
         <View style={styles.detailContainer}>
           <Text style={styles.detailTitle}>Phone:</Text>
-          <Text style={styles.detailText}>{message.phoneNumber}</Text>
+          <Text style={styles.detailText} selectable>{message.phoneNumber}</Text>
         </View>
 
         <View style={styles.messageContainer}>
           <Text style={styles.messageTitle}>Message:</Text>
-          <Text style={styles.messageText}>{message.message}</Text>
+          <Text style={styles.messageText} selectable>{message.message}</Text>
         </View>
 
         <ContactButtons

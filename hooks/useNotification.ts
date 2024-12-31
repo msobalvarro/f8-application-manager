@@ -3,7 +3,6 @@ import * as Device from 'expo-device'
 import { useEffect, useRef } from 'react'
 import { Platform } from 'react-native'
 
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,

@@ -244,7 +244,7 @@ export const MessageItemStyles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     borderRadius: 10,
     padding: 15,
     shadowColor: '#000',
@@ -256,15 +256,15 @@ export const MessageItemStyles = StyleSheet.create({
   header: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#FFF',
   },
   time: {
     fontSize: 14,
-    color: '#2D2D2D',
+    color: '#FFF',
   },
   subHeader: {
     fontSize: 14,
-    color: '#777',
+    color: '#FFF',
     marginVertical: 5,
   },
   detailContainer: {
@@ -274,12 +274,12 @@ export const MessageItemStyles = StyleSheet.create({
   detailTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#555',
+    color: '#CCC',
     width: 80,
   },
   detailText: {
     fontSize: 14,
-    color: '#333',
+    color: '#FFF',
   },
   messageContainer: {
     marginVertical: 10,
@@ -287,11 +287,11 @@ export const MessageItemStyles = StyleSheet.create({
   messageTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#555',
+    color: '#CCC',
   },
   messageText: {
     fontSize: 14,
-    color: '#333',
+    color: '#FFF',
     marginTop: 5,
     lineHeight: 20,
   },
