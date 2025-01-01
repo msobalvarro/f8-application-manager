@@ -20,19 +20,22 @@ export const ProductItem = ({ product }: Props) => {
 
   return (
     <View style={styles.productContainer} key={product._id}>
-      <CarousellProduct images={product.images} />
+      {product.images.length > 0 && <CarousellProduct images={product.images} />}
 
-      <View style={styles.containerTitle}>
-        <View style={styles.subContainerTitle}>
-          {product.pinned && <IconPin />}
+      <View>
+        <View style={styles.containerTitle}>
           <Text style={styles.productTitle}>
             {product.name}
           </Text>
+
+          <View style={styles.subContainerInformation}>
+            {product.archived && <Badge colorScheme='trueGray' rounded='full'>Archivado</Badge>}
+            {product.pinned && <IconPin />}
+          </View>
         </View>
 
-        {product.archived && <Badge colorScheme='trueGray' rounded='full'>Archivado</Badge>}
+        <Text style={styles.description}>{product.description}</Text>
       </View>
-      <Text style={styles.description}>{product.description}</Text>
 
       <Button onPress={handleEditProduct} colorScheme='emerald'>Editar</Button>
     </View>

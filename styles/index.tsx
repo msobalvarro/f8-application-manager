@@ -68,7 +68,7 @@ export const LoginStyles = StyleSheet.create({
 })
 
 export const ProductsStyles = StyleSheet.create({
-  subContainerTitle: {
+  subContainerInformation: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
@@ -94,7 +94,7 @@ export const ProductsStyles = StyleSheet.create({
     overflow: 'hidden',
     borderColor: 'rgba(255,255,255, 0.2)',
     borderWidth: 5,
-    gap: 10,
+    gap: 25,
     padding: 20,
   },
 

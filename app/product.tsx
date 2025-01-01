@@ -1,22 +1,26 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
-import { IconTrash } from '@/components/Icons'
+import { IconImages, IconTrash } from '@/components/Icons'
 import { ImageEditGalery } from '@/components/product/imageEditGalery'
 import { ProductSkeleton } from '@/components/product/productSkeleton'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
 import { ProductsResponse } from '@/interfaces'
 import { DeleteProductService } from '@/services/deleteProduct'
+import { handleImagePickerService } from '@/services/imagePicker'
 import { UpdateProductService } from '@/services/updateProduct'
+import { uploadImageService } from '@/services/uploadImage'
 import { ProductsStyles as styles, UiStyles } from '@/styles'
+import { ImagePickerAsset } from 'expo-image-picker'
 import { router, useLocalSearchParams } from 'expo-router'
 import { Button, Checkbox } from 'native-base'
 import { useEffect, useState } from 'react'
-import { Alert, Text, TextInput, View } from 'react-native'
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Toast, ALERT_TYPE } from 'react-native-alert-notification'
 
 export default function Product() {
   const [product, setProduct] = useState<ProductsResponse | null>(null)
   const [loading, setLoading] = useState(false)
+  const [newImages, setImages] = useState<ImagePickerAsset[]>([])
   const { id } = useLocalSearchParams<{ id: string }>()
   const { data, isLoading, refetch } = useAxios<ProductsResponse>({ endpoint: `/products?id=${id}` })
 
@@ -34,12 +38,31 @@ export default function Product() {
     }
   }
 
+  const deleteNewImage = (image: ImagePickerAsset) => {
+    const updatedImages = newImages.filter(i => i.uri !== image.uri);
+    setImages(updatedImages)
+  }
+
   const updateProduct = async () => {
     setLoading(true)
 
     try {
       if (product) {
-        await UpdateProductService(product)
+        const images: string[] = []
+
+        if (newImages.length > 0) {
+
+          for (const image of newImages) {
+            const response = await uploadImageService(image)
+            images.push(response)
+          }
+        }
+
+
+        await UpdateProductService({
+          ...product,
+          images: [...product.images, ...images]
+        })
 
         Toast.show({
           title: 'Producto Actualizado',
@@ -47,6 +70,8 @@ export default function Product() {
           textBody: 'El producto se ha actualizado correctamente',
         })
 
+
+        setImages([])
         refetch()
       }
     } catch (error) {
@@ -87,6 +112,11 @@ export default function Product() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleImage = async () => {
+    const newImages = await handleImagePickerService()
+    setImages([...newImages, ...newImages])
   }
 
   const deleteProduct = () => {
@@ -158,7 +188,18 @@ export default function Product() {
             </Text>
           </Checkbox>
 
-          <ImageEditGalery images={product.images} onDelete={deleteImage} />
+          {product.images.length > 0 && <ImageEditGalery images={product.images} onDelete={deleteImage} />}
+          {newImages.length > 0 && (
+            <ImageEditGalery
+              imagesLocal={newImages}
+              isLocal
+              onDeleteLocal={deleteNewImage} />
+          )}
+
+          <TouchableOpacity onPress={handleImage}>
+            <IconImages />
+            <Text>Agregar Imagenes</Text>
+          </TouchableOpacity>
 
           <View style={styles.inputContainer}>
             <TextInput
@@ -185,10 +226,9 @@ export default function Product() {
           </View>
 
           <View style={styles.buttonContainer}>
-            {product !== data && (
+            {(product !== data || newImages.length > 0) && (
               <Button
                 style={{ flex: 1 }}
-                disabled={product === data}
                 isLoading={loading || isLoading}
                 onPress={updateProduct}
                 colorScheme='green'>Guardar</Button>
