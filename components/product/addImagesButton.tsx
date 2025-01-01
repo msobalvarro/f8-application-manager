@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   button: {
     padding: 20,
     borderWidth: 2,
-    borderColor: '#FFFFFF',
+    borderColor: 'rgba(255, 255, 255,0.5)',
+    borderStyle: 'dotted',
     flexDirection: 'row',
     gap: 20,
     alignItems: 'center',

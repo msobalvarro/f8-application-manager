@@ -11,6 +11,7 @@ import { createProductService } from '@/services/createProduct'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { useRouter } from 'expo-router'
 import { ImagePickerAsset } from 'expo-image-picker'
+import { AddImagesButton } from '@/components/product/addImagesButton'
 
 export default function NewProduct() {
   const router = useRouter()
@@ -59,8 +60,7 @@ export default function NewProduct() {
         <TitleView
           title='Nuevo Producto'
           subtitle='Agrega un nuevo producto a tu pagina web, agrega imagenes y una descripción'
-          Icon={<IconNewImage />}
-          onClickAdd={handleImage} />
+          hiddenButton />
 
         <Checkbox isDisabled={loading} isChecked={pinned} onChange={() => setPinned(!pinned)} value='pinned'>
           <Text style={{ color: '#CCC', fontSize: 16 }}>Fijar en la pagina web F8 principal</Text>
@@ -73,6 +73,8 @@ export default function NewProduct() {
               key={i}
               source={image.uri} />)}
         </View>
+
+        <AddImagesButton onClick={handleImage} />
 
         <View style={styles.inputContainer}>
           <TextInput
