@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import { ProductImage } from './productImage'
-import { SERVER_HOST } from '@/hooks/useFetch'
+import { serverApi } from '@/constants/constanst'
 
 interface Props {
   images: string[]
@@ -14,7 +14,7 @@ export const ImageEditGalery = ({ images, onDelete }: Props) => {
         <ProductImage
           onDelete={() => onDelete(image)}
           key={i}
-          source={`${SERVER_HOST}/uploads/${image}`} />)}
+          source={`${serverApi}/images/${image}`} />)}
     </View>
 
   )

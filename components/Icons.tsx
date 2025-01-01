@@ -1,4 +1,4 @@
-import { Colors } from '@/constants/Colors'
+import { Colors } from '@/constants/colors'
 import IconFontAwsome from '@expo/vector-icons/FontAwesome'
 import IconIonic from '@expo/vector-icons/Ionicons'
 

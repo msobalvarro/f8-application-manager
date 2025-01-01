@@ -4,12 +4,10 @@ import { AxiosError } from 'axios'
 import { logoutService } from '@/services/authentication'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { PropsAxiosIntance } from '@/interfaces'
-
-export const SERVER_HOST = 'http://192.168.1.3:3000'
-export const ServerAddress = SERVER_HOST + '/api'
+import { serverAddress } from '@/constants/constanst'
 
 export const useFetch = () => {
-  const fetchHttp = (endpoint: string) => fetch(`${ServerAddress}/${endpoint}`)
+  const fetchHttp = (endpoint: string) => fetch(`${serverAddress}/${endpoint}`)
 
   return { fetchHttp }
 }

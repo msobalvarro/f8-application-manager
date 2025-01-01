@@ -1,6 +1,6 @@
 import logo from '@/assets/images/logo/F8_Horizontal_Logo.png'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Colors } from '@/constants/Colors'
+import { Colors } from '@/constants/colors'
 import { usePathname, useRouter } from 'expo-router'
 import { IconBack, IconMenu } from '../Icons'
 

@@ -28,7 +28,7 @@ export interface ProductsResponse extends ProductsPropierties {
 }
 
 export interface FileUploadedResponse {
-  file: string
+  fileName: string
 }
 
 export interface PreferencesPropierties {

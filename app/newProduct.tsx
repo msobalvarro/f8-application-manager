@@ -40,8 +40,6 @@ export default function NewProduct() {
         onPress: () => console.log('click'),
       })
 
-      console.log(product)
-
       router.navigate('/products')
     } catch (error) {
       Toast.show({
@@ -81,8 +79,8 @@ export default function NewProduct() {
             placeholderTextColor='#CCC'
             onChangeText={setDescription}
             multiline
-            numberOfLines={4}
-            style={UiStyles.InputStyle}
+            numberOfLines={10}
+            style={[UiStyles.InputStyle, { height: 200 }]}
             placeholder='Escriba una descripción del producto' />
         </View>
 
