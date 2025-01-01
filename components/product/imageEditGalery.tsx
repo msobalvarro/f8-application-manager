@@ -11,7 +11,7 @@ interface Props {
   isLocal?: boolean
 }
 
-export const ImageEditGalery = ({ images, onDelete, isLocal, imagesLocal, onDeleteLocal }: Props) => {
+export const ImageEditGalery = ({ images, onDelete, isLocal, imagesLocal, onDeleteLocal }: Props) => {  
   if (isLocal) {
     return (
       <View style={styles.imageContainer}>

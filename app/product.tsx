@@ -116,8 +116,8 @@ export default function Product() {
   }
 
   const handleImage = async () => {
-    const newImages = await handleImagePickerService()
-    setImages([...newImages, ...newImages])
+    const newImageIncomming = await handleImagePickerService()
+    setImages([...newImages, ...newImageIncomming])
   }
 
   const deleteProduct = () => {
@@ -219,7 +219,7 @@ export default function Product() {
               value={product.description}
               multiline
               numberOfLines={4}
-              style={UiStyles.InputStyle}
+              style={[UiStyles.InputStyle, { height: 200 }]}
               placeholder='Escriba una descripción del producto' />
           </View>
 

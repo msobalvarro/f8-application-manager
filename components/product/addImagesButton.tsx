@@ -10,7 +10,7 @@ export const AddImagesButton = ({ onClick }: Props) => (
   <TouchableOpacity style={styles.button} onPress={onClick}>
     <IconImages />
     <View style={styles.containerText}>
-      <Text style={[styles.text, { fontSize: 20 }]}>Agregar Imagenes</Text>
+      <Text style={[styles.text, { fontSize: 20 }]}>Agregar Imágenes</Text>
       <Text style={styles.text}>Toca para adjuntar nuevas imagenes al producto</Text>
     </View>
   </TouchableOpacity>

@@ -3,7 +3,7 @@ import IconFontAwsome from '@expo/vector-icons/FontAwesome'
 import IconIonic from '@expo/vector-icons/Ionicons'
 
 export const IconAddMenu = () => <IconFontAwsome name='plus-circle' size={32} color={Colors.primary} />
-export const IconDeleteImage = () => <IconFontAwsome name='remove' size={32} color='#FFF' />
+export const IconDeleteImage = () => <IconIonic name='trash' size={24} color='#FFF' />
 export const IconNewImage = () => <IconFontAwsome name='photo' size={32} color={Colors.primary} />
 export const IconBack = () => <IconFontAwsome name='chevron-left' size={20} color={Colors.backgroundLayout} />
 export const IconMenu = () => <IconIonic name='menu' size={32} color={Colors.backgroundLayout} />

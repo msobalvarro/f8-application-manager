@@ -195,7 +195,7 @@ export const ProductImageStyles = StyleSheet.create({
   },
   deleteButton: {
     position: 'absolute',
-    borderRadius: 10,
+    borderRadius: 5,
     top: 10,
     right: 10,
     backgroundColor: 'rgba(0,0,0,0.5)',

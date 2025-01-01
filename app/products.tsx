@@ -18,7 +18,7 @@ export default function ProductsTab() {
     <ContainerViewLayout scroll isLoading={isLoading} onRefresh={refetch}>
       <View style={{ paddingVertical: 20 }}>
         <TitleView
-          title='Productos'
+          title='Productos F8'
           subtitle='Administra todos tus productos, agrega nuevos productos y elimina los que ya no necesites'
           onClickAdd={onNewProduct} />
       </View>
