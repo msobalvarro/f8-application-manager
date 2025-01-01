@@ -47,7 +47,7 @@ export default function Menu() {
           <Text style={styles.text}>Mensajes</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/products')}>
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/services')}>
           <IconServiceListMenu />
           <Text style={styles.text}>Servicios F8</Text>
         </TouchableOpacity>

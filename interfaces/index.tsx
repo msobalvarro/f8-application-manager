@@ -51,3 +51,13 @@ export interface MessagesResponse {
   archived?: boolean
   createdAt: string
 }
+
+
+export interface ServicesPropierties { 
+  _id: string
+  title: string
+  description: string  
+  images: string[]
+  archived?: boolean
+  pinned?: boolean
+}
