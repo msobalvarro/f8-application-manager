@@ -1,4 +1,4 @@
-import { Colors } from '@/constants/Colors'
+import { Colors } from '@/constants/colors'
 import { Dimensions, StyleSheet } from 'react-native'
 
 export const { height: HeightScreen, width: WidthScreen } = Dimensions.get('window')
@@ -68,6 +68,13 @@ export const LoginStyles = StyleSheet.create({
 })
 
 export const ProductsStyles = StyleSheet.create({
+  subContainerInformation: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    // justifyContent: 'center',
+  },
+
   title: {
     paddingVertical: 50,
     fontSize: 34,
@@ -75,7 +82,7 @@ export const ProductsStyles = StyleSheet.create({
   },
 
   productContainerList: {
-    gap: 50
+    gap: 30
   },
 
   inputContainer: {
@@ -87,11 +94,12 @@ export const ProductsStyles = StyleSheet.create({
     overflow: 'hidden',
     borderColor: 'rgba(255,255,255, 0.2)',
     borderWidth: 5,
-    gap: 10,
+    gap: 25,
     padding: 20,
   },
 
   containerTitle: {
+    justifyContent: 'space-between',
     flexDirection: 'row',
     gap: 20,
   },
@@ -109,7 +117,6 @@ export const ProductsStyles = StyleSheet.create({
     marginVertical: 20,
     flexDirection: 'row',
     gap: 10,
-    // justifyContent: 'flex-end',
   },
 })
 
@@ -188,7 +195,7 @@ export const ProductImageStyles = StyleSheet.create({
   },
   deleteButton: {
     position: 'absolute',
-    borderRadius: 10,
+    borderRadius: 5,
     top: 10,
     right: 10,
     backgroundColor: 'rgba(0,0,0,0.5)',

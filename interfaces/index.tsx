@@ -21,6 +21,7 @@ export interface ProductsPropierties {
   description: string
   unitPrice: number
   images: string[]
+  pinned: boolean
 }
 
 export interface ProductsResponse extends ProductsPropierties {
@@ -28,7 +29,7 @@ export interface ProductsResponse extends ProductsPropierties {
 }
 
 export interface FileUploadedResponse {
-  file: string
+  fileName: string
 }
 
 export interface PreferencesPropierties {
@@ -49,4 +50,14 @@ export interface MessagesResponse {
   message: string
   archived?: boolean
   createdAt: string
+}
+
+
+export interface ServicesPropierties { 
+  _id: string
+  title: string
+  description: string  
+  images: string[]
+  archived?: boolean
+  pinned?: boolean
 }

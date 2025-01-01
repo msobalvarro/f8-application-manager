@@ -6,18 +6,17 @@ import { Button, Checkbox } from 'native-base'
 import { UiStyles } from '@/styles'
 import { TitleView } from '@/components/TitleView'
 import { handleImagePickerService } from '@/services/imagePicker'
-import { IconNewImage } from '@/components/Icons'
-import { createProductService } from '@/services/createProduct'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
 import { useRouter } from 'expo-router'
 import { ImagePickerAsset } from 'expo-image-picker'
 import { AddImagesButton } from '@/components/product/addImagesButton'
+import { createService } from '@/services/createService'
 
-export default function NewProduct() {
+export default function NewService() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [images, setImages] = useState<ImagePickerAsset[]>([])
-  const [name, setName] = useState('')
+  const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [pinned, setPinned] = useState(false)
 
@@ -29,21 +28,21 @@ export default function NewProduct() {
   const submit = async () => {
     setLoading(true)
     try {
-      await createProductService({
+      await createService({
         imagesList: images,
         description,
-        name,
+        title,
         pinned
       })
 
       Toast.show({
-        title: 'Producto Agregado',
+        title: 'Servicio Agregado',
         type: ALERT_TYPE.SUCCESS,
-        textBody: 'El producto se ha agregado correctamente, haz click para ver',
+        textBody: 'El servicio se ha agregado correctamente, haz click para ver',
         onPress: () => console.log('click'),
       })
 
-      router.navigate('/products')
+      router.navigate('/services')
     } catch (error) {
       Toast.show({
         title: String(error),
@@ -58,8 +57,8 @@ export default function NewProduct() {
     <ContainerViewLayout scroll>
       <View style={styles.container}>
         <TitleView
-          title='Nuevo Producto'
-          subtitle='Agrega un nuevo producto a tu pagina web, agrega imagenes y una descripción'
+          title='Nuevo Servicio'
+          subtitle='Agrega un nuevo servicio a tu pagina web para que tus clientes vean tus trabajos realizados, agrega imagenes y una descripción'
           hiddenButton />
 
         <Checkbox isDisabled={loading} isChecked={pinned} onChange={() => setPinned(!pinned)} value='pinned'>
@@ -79,9 +78,9 @@ export default function NewProduct() {
         <View style={styles.inputContainer}>
           <TextInput
             placeholderTextColor='#CCC'
-            onChangeText={setName}
+            onChangeText={setTitle}
             style={UiStyles.InputStyle}
-            placeholder='Nombre del Producto' />
+            placeholder='Titulo del Servicio' />
 
           <TextInput
             placeholderTextColor='#CCC'
@@ -89,11 +88,11 @@ export default function NewProduct() {
             multiline
             numberOfLines={4}
             style={[UiStyles.InputStyle, { height: 200 }]}
-            placeholder='Escriba una descripción del producto' />
+            placeholder='Escriba una descripción clara del servicio' />
         </View>
 
         <Button fontSize={20} isLoading={loading} onPress={submit} colorScheme='primary'>
-          Agregar Producto
+          Agregar Servicio
         </Button>
       </View>
     </ContainerViewLayout>

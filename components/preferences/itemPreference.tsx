@@ -1,4 +1,4 @@
-import { Colors } from '@/constants/Colors'
+import { Colors } from '@/constants/colors'
 import { PreferenceResponse, PreferencesPropierties } from '@/interfaces'
 import { updatePreferenceService } from '@/services/updatePreference'
 import { UiStyles } from '@/styles'

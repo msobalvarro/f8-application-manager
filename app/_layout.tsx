@@ -11,7 +11,7 @@ import { KeyboardAvoidingView, SafeAreaView, useColorScheme } from 'react-native
 import { LayoutStyles } from '@/styles'
 import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification'
 import { UiNavbar } from '@/components/ui/Navbar'
-import { Colors } from '@/constants/Colors'
+import { Colors } from '@/constants/colors'
 import { registerSocketTask, socket } from '@/services/socketService'
 import { useStore } from '@/hooks/useStore'
 import { MessagesResponse } from '@/interfaces'

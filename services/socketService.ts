@@ -1,15 +1,15 @@
 import * as TaskManager from 'expo-task-manager'
 import * as BackgroundFetch from 'expo-background-fetch'
 import { io } from 'socket.io-client'
-import { SERVER_HOST } from '../hooks/useFetch'
 import { getToken } from './authentication'
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification'
+import { serverAddress } from '@/constants/constanst'
 
 const SOCKET_TASK = 'background-socket-task'
 
 const token = (async () => await getToken())()
 
-export const socket = io(SERVER_HOST, {
+export const socket = io(serverAddress, {
   reconnection: true,
   auth: { token }
 })

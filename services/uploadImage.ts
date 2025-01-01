@@ -1,24 +1,29 @@
 import axios, { AxiosError } from 'axios'
 import { FileUploadedResponse } from '@/interfaces'
-import { serverAddress } from './axiosInstance'
 import { ImagePickerAsset } from 'expo-image-picker'
+import { store } from '@/store'
+import { serverApiFile } from '@/constants/constanst'
 
 export const uploadImageService = async (image: ImagePickerAsset): Promise<string> => {
   const formData = new FormData()
-  formData.append('file', image as any)
+  formData.append('file', {
+    uri: image.uri,
+    name: image.fileName,
+    type: image.mimeType,
+  } as any)
 
   try {
     let { data } = await axios.post<FileUploadedResponse>(
-      `${serverAddress}/api/files`,
+      serverApiFile,
       formData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data; charset=utf-8;',
+          'Authorization': `Bearer ${store.getState().token}`
         },
       }
     )
 
-    return data.file
+    return data.fileName
   } catch (error) {
     if (error instanceof AxiosError) {
       throw new Error(error.response?.data?.error)

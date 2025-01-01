@@ -5,10 +5,10 @@ import { ImageEditGalery } from '@/components/product/imageEditGalery'
 import { ProductSkeleton } from '@/components/product/productSkeleton'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
-import { ProductsResponse } from '@/interfaces'
-import { DeleteProductService } from '@/services/deleteProduct'
+import { ServicesPropierties } from '@/interfaces'
+import { DeleteServiceApi } from '@/services/deleteService'
 import { handleImagePickerService } from '@/services/imagePicker'
-import { UpdateProductService } from '@/services/updateProduct'
+import { UpdateDataService } from '@/services/updateService'
 import { uploadImageService } from '@/services/uploadImage'
 import { ProductsStyles as styles, UiStyles } from '@/styles'
 import { ImagePickerAsset } from 'expo-image-picker'
@@ -18,22 +18,22 @@ import { useEffect, useState } from 'react'
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Toast, ALERT_TYPE } from 'react-native-alert-notification'
 
-export default function Product() {
-  const [product, setProduct] = useState<ProductsResponse | null>(null)
+export default function Service() {
+  const [service, setService] = useState<ServicesPropierties | null>(null)
   const [loading, setLoading] = useState(false)
   const [newImages, setImages] = useState<ImagePickerAsset[]>([])
   const { id } = useLocalSearchParams<{ id: string }>()
-  const { data, isLoading, refetch } = useAxios<ProductsResponse>({ endpoint: `/products?id=${id}` })
+  const { data, isLoading, refetch } = useAxios<ServicesPropierties>({ endpoint: `/services?id=${id}` })
 
   useEffect(() => {
-    setProduct(data)
+    setService(data)
   }, [data])
 
   const deleteImage = (image: string) => {
-    if (product?.images) {
-      const updatedImages = product.images.filter(i => i !== image);
-      setProduct({
-        ...product,
+    if (service?.images) {
+      const updatedImages = service.images.filter(i => i !== image);
+      setService({
+        ...service,
         images: updatedImages
       })
     }
@@ -44,11 +44,11 @@ export default function Product() {
     setImages(updatedImages)
   }
 
-  const updateProduct = async () => {
+  const updateService = async () => {
     setLoading(true)
 
     try {
-      if (product) {
+      if (service) {
         const images: string[] = []
 
         if (newImages.length > 0) {
@@ -59,18 +59,16 @@ export default function Product() {
           }
         }
 
-
-        await UpdateProductService({
-          ...product,
-          images: [...product.images, ...images]
+        await UpdateDataService({
+          ...service,
+          images: [...service.images, ...images],
         })
 
         Toast.show({
-          title: 'Producto Actualizado',
+          title: 'Servicio Actualizado',
           type: ALERT_TYPE.SUCCESS,
           textBody: 'El producto se ha actualizado correctamente',
         })
-
 
         setImages([])
         refetch()
@@ -90,16 +88,16 @@ export default function Product() {
     setLoading(true)
 
     try {
-      if (product) {
-        await UpdateProductService({
-          ...product,
-          archived: !product.archived
+      if (service) {
+        await UpdateDataService({
+          ...service,
+          archived: !service.archived
         })
 
         Toast.show({
-          title: 'Producto Actualizado',
+          title: 'Servicio Actualizado',
           type: ALERT_TYPE.SUCCESS,
-          textBody: `El producto ${product.archived ? 'se ha activado' : 'se ha archivado'} correctamente`,
+          textBody: `El producto ${service.archived ? 'se ha activado' : 'se ha archivado'} correctamente`,
         })
 
         refetch()
@@ -133,13 +131,13 @@ export default function Product() {
           setLoading(true)
 
           try {
-            if (product) {
-              await DeleteProductService(product)
+            if (service) {
+              await DeleteServiceApi(service)
 
               Toast.show({
                 title: 'Producto Actualizado',
                 type: ALERT_TYPE.SUCCESS,
-                textBody: `El producto ${product.archived ? 'se ha activado' : 'se ha archivado'} correctamente`,
+                textBody: `El producto ${service.archived ? 'se ha activado' : 'se ha archivado'} correctamente`,
               })
 
               router.back()
@@ -166,22 +164,22 @@ export default function Product() {
         <TitleView
           onClickAdd={deleteProduct}
           Icon={<IconTrash />}
-          title='Edita tu Producto'
-          subtitle='Edita la informacion de tu producto, agrega nuevas imagenes, dale de baja' />
+          title='Edita tu Servicio'
+          subtitle='Edita tu servicio, tus clientes verán tus servicios publicados, agrega nuevas imagenes, dale de baja' />
       </View>
 
       {isLoading && (
         <ProductSkeleton />
       )}
 
-      {(!isLoading && product) && (
+      {(!isLoading && service) && (
         <View style={styles.productContainerList}>
           <Checkbox
             isDisabled={loading}
-            isChecked={product.pinned}
-            onChange={() => setProduct({
-              ...product,
-              pinned: !product.pinned
+            isChecked={service.pinned}
+            onChange={() => setService({
+              ...service,
+              pinned: !service.pinned
             })}
             value='pinned'>
             <Text style={{ color: '#CCC', fontSize: 16 }}>
@@ -189,7 +187,7 @@ export default function Product() {
             </Text>
           </Checkbox>
 
-          {product.images.length > 0 && <ImageEditGalery images={product.images} onDelete={deleteImage} />}
+          {service.images.length > 0 && <ImageEditGalery images={service.images} onDelete={deleteImage} />}
           {newImages.length > 0 && (
             <ImageEditGalery
               imagesLocal={newImages}
@@ -202,21 +200,21 @@ export default function Product() {
           <View style={styles.inputContainer}>
             <TextInput
               placeholderTextColor='#CCC'
-              onChangeText={v => setProduct({
-                ...product,
-                name: v
+              onChangeText={v => setService({
+                ...service,
+                title: v
               })}
-              value={product.name}
+              value={service.title}
               style={[UiStyles.InputStyle, { fontSize: 24 }]}
               placeholder='Nombre del Producto' />
 
             <TextInput
               placeholderTextColor='#CCC'
-              onChangeText={v => setProduct({
-                ...product,
+              onChangeText={v => setService({
+                ...service,
                 description: v
               })}
-              value={product.description}
+              value={service.description}
               multiline
               numberOfLines={4}
               style={[UiStyles.InputStyle, { height: 200 }]}
@@ -224,15 +222,15 @@ export default function Product() {
           </View>
 
           <View style={styles.buttonContainer}>
-            {(product !== data || newImages.length > 0) && (
+            {(service !== data || newImages.length > 0) && (
               <Button
                 style={{ flex: 1 }}
                 isLoading={loading || isLoading}
-                onPress={updateProduct}
+                onPress={updateService}
                 colorScheme='green'>Guardar</Button>
             )}
 
-            {!product.archived
+            {!service.archived
               ? <Button
                 onPress={updateArchived}
                 style={{ flex: 1 }}

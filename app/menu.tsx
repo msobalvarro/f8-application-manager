@@ -3,8 +3,10 @@ import {
   IconCreateProductMenu,
   IconLogoutProductMenu,
   IconMessageMenu,
+  IconNewServiceListMenu,
   IconPreference,
-  IconProductListMenu
+  IconProductListMenu,
+  IconServiceListMenu
 } from '@/components/Icons'
 import { TitleView } from '@/components/TitleView'
 import { logoutService } from '@/services/authentication'
@@ -37,7 +39,7 @@ export default function Menu() {
       <View style={styles.container}>
         <TitleView
           hiddenButton
-          title='F8 Menú Manager'
+          title='Menú F8 Manager'
           subtitle='Administra tu sitio web con opciones parametrizadas'
         />
 
@@ -46,20 +48,31 @@ export default function Menu() {
           <Text style={styles.text}>Mensajes</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/services')}>
+          <IconServiceListMenu />
+          <Text style={styles.text}>Servicios F8</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/newService')}>
+          <IconNewServiceListMenu />
+          <Text style={styles.text}>Nuevo Servicio</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.button} onPress={() => router.navigate('/products')}>
           <IconProductListMenu />
-          <Text style={styles.text}>Productos</Text>
+          <Text style={styles.text}>Productos F8</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => router.navigate('/newProduct')}>
           <IconCreateProductMenu />
           <Text style={styles.text}>Nuevo Producto</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/preference')}>
 
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/preference')}>
           <IconPreference />
           <Text style={styles.text}>Preferencias</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.button} onPress={logout}>
           <IconLogoutProductMenu />
           <Text style={styles.text}>Cerrar Sesión</Text>

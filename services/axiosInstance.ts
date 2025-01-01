@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { getToken, logoutService } from './authentication'
-
-export const serverAddress = 'http://192.168.1.3:3000'
+import { serverAddress } from '@/constants/constanst'
 
 export const axiosInstance = axios.create({
   baseURL: `${serverAddress}/api/`,

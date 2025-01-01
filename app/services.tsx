@@ -1,25 +1,25 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
-import { ProductItem } from '@/components/product/productItemList'
 import { ProductSkeleton } from '@/components/product/productSkeleton'
+import { ServiceItem } from '@/components/service/itemService'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
-import { ProductsResponse } from '@/interfaces'
+import { ServicesPropierties } from '@/interfaces'
 import { ProductsStyles as styles } from '@/styles'
 import { useRouter } from 'expo-router'
 import { Text, View } from 'react-native'
 
-export default function ProductsTab() {
+export default function ServiceView() {
   const router = useRouter()
-  const { data, isLoading, refetch } = useAxios<ProductsResponse[]>({ endpoint: '/products' })
+  const { data, isLoading, refetch } = useAxios<ServicesPropierties[]>({ endpoint: '/services' })
 
-  const onNewProduct = () => router.navigate('/newProduct')
+  const onNewProduct = () => router.navigate('/newService')
 
   return (
     <ContainerViewLayout scroll isLoading={isLoading} onRefresh={refetch}>
       <View style={{ paddingVertical: 20 }}>
         <TitleView
-          title='Productos F8'
-          subtitle='Administra todos tus productos, agrega nuevos productos y elimina los que ya no necesites'
+          title='Servicios F8'
+          subtitle='Administra todos tus servicios, agrega nuevas historias de servicios realizados y elimina los que ya no necesites'
           onClickAdd={onNewProduct} />
       </View>
 
@@ -28,10 +28,10 @@ export default function ProductsTab() {
           <ProductSkeleton />
         )}
 
-        {!isLoading && data?.map(product => <ProductItem product={product} key={product._id} />)}
+        {!isLoading && data?.map(service => <ServiceItem service={service} key={service._id} />)}
         {(!isLoading && data?.length === 0) && (
           <Text style={{ color: 'rgba(255, 255, 255, 0.3)', fontSize: 24, alignSelf: 'center' }}>
-            No hay Productos
+            No hay Servicios
           </Text>
         )}
       </View>

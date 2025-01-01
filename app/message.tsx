@@ -40,7 +40,7 @@ export default function MessageView() {
         </Checkbox>
 
         <TextInput
-        placeholderTextColor='#CCC'
+          placeholderTextColor='#CCC'
           placeholder='Filtrar por nombre, correo, telefónico'
           style={[UiStyles.InputStyle, { width: '100%', fontSize: 20 }]}
           value={filter}

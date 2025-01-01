@@ -4,6 +4,7 @@ import { Text, View } from 'react-native'
 import { CarousellProduct } from '@/components/product/CarousellProduct'
 import { Badge, Button } from 'native-base'
 import { useRouter } from 'expo-router'
+import { IconPin } from '../Icons'
 
 interface Props {
   product: ProductsResponse
@@ -19,18 +20,24 @@ export const ProductItem = ({ product }: Props) => {
 
   return (
     <View style={styles.productContainer} key={product._id}>
-      <CarousellProduct images={product.images} />
+      {product.images.length > 0 && <CarousellProduct images={product.images} />}
 
-      <View style={styles.containerTitle}>
-        <Text style={styles.productTitle}>
-          {product.name}
-        </Text>
+      <View>
+        <View style={styles.containerTitle}>
+          <Text style={styles.productTitle}>
+            {product.name}
+          </Text>
 
-        {product.archived && <Badge colorScheme='danger' rounded='full'>Archivado</Badge>}
+          <View style={styles.subContainerInformation}>
+            {product.archived && <Badge colorScheme='trueGray' rounded='full'>Archivado</Badge>}
+            {product.pinned && <IconPin />}
+          </View>
+        </View>
+
+        <Text style={styles.description}>{product.description}</Text>
       </View>
-      <Text style={styles.description}>{product.description}</Text>
 
-      <Button onPress={handleEditProduct} colorScheme='emerald'>Editar</Button>
+      <Button onPress={handleEditProduct} colorScheme='primary'>Editar</Button>
     </View>
   )
 }
