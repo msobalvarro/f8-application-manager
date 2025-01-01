@@ -9,6 +9,7 @@ export const IconBack = () => <IconFontAwsome name='chevron-left' size={20} colo
 export const IconMenu = () => <IconIonic name='menu' size={32} color={Colors.backgroundLayout} />
 export const IconProductListMenu = () => <IconIonic name='list' size={32} color={Colors.light.background} />
 export const IconServiceListMenu = () => <IconIonic name='briefcase' size={32} color={Colors.light.background} />
+export const IconNewServiceListMenu = () => <IconIonic name='build' size={32} color={Colors.light.background} />
 export const IconPreference = () => <IconIonic name='settings' size={32} color={Colors.light.background} />
 export const IconCreateProductMenu = () => <IconIonic name='create' size={32} color={Colors.light.background} />
 export const IconLogoutProductMenu = () => <IconIonic name='lock-closed' size={32} color={Colors.light.background} />

@@ -13,9 +13,9 @@ interface Props {
 export const ServiceItem = ({ service }: Props) => {
   const navigation = useRouter()
 
-  const handleEditProduct = () => {
+  const handleEditService = () => {
     // Navigate to edit product screen
-    navigation.navigate(`/product?id=${service._id}`)
+    navigation.navigate(`/service?id=${service._id}`)
   }
 
   return (
@@ -37,7 +37,7 @@ export const ServiceItem = ({ service }: Props) => {
         <Text style={styles.description}>{service.description}</Text>
       </View>
 
-      <Button onPress={handleEditProduct} colorScheme='primary'>Editar</Button>
+      <Button onPress={handleEditService} colorScheme='primary'>Editar</Button>
     </View>
   )
 }
