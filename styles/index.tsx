@@ -82,7 +82,7 @@ export const ProductsStyles = StyleSheet.create({
   },
 
   productContainerList: {
-    gap: 50
+    gap: 30
   },
 
   inputContainer: {

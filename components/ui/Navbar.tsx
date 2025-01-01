@@ -23,7 +23,7 @@ export const UiNavbar = () => {
       </View>
 
       {pathName !== '/menu' && (
-        <TouchableOpacity onPress={() => router.navigate('/menu')}>
+        <TouchableOpacity onPress={() => router.replace('/menu')}>
           <IconMenu />
         </TouchableOpacity>
       )}

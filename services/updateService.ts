@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 
 export const UpdateDataService = async (service: ServicesPropierties) => {
   try {
-    await axiosInstance.put<ServicesPropierties>('/service', {
+    await axiosInstance.put<ServicesPropierties>('/services', {
       ...service,
       id: service._id
     })
