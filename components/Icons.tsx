@@ -8,6 +8,7 @@ export const IconNewImage = () => <IconFontAwsome name='photo' size={32} color={
 export const IconBack = () => <IconFontAwsome name='chevron-left' size={20} color={Colors.backgroundLayout} />
 export const IconMenu = () => <IconIonic name='menu' size={32} color={Colors.backgroundLayout} />
 export const IconProductListMenu = () => <IconIonic name='list' size={32} color={Colors.light.background} />
+export const IconServiceListMenu = () => <IconIonic name='briefcase' size={32} color={Colors.light.background} />
 export const IconPreference = () => <IconIonic name='settings' size={32} color={Colors.light.background} />
 export const IconCreateProductMenu = () => <IconIonic name='create' size={32} color={Colors.light.background} />
 export const IconLogoutProductMenu = () => <IconIonic name='lock-closed' size={32} color={Colors.light.background} />
@@ -18,4 +19,5 @@ export const IconMail = () => <IconIonic name='mail-unread-outline' size={24} co
 export const IconPin = () => <IconIonic name='pin-sharp' size={24} color={Colors.light.background} />
 export const IconTrash = () => <IconIonic name='trash-bin' size={24} color={Colors.light.background} />
 export const IconImages = () => <IconIonic name='images' size={24} color={Colors.light.background} />
+export const IconMainMenu = () => <IconIonic name='apps' size={24} color={Colors.primary} />
 

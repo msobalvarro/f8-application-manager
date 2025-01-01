@@ -37,7 +37,7 @@ export const ProductItem = ({ product }: Props) => {
         <Text style={styles.description}>{product.description}</Text>
       </View>
 
-      <Button onPress={handleEditProduct} colorScheme='emerald'>Editar</Button>
+      <Button onPress={handleEditProduct} colorScheme='primary'>Editar</Button>
     </View>
   )
 }

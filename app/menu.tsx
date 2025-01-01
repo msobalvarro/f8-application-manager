@@ -4,7 +4,8 @@ import {
   IconLogoutProductMenu,
   IconMessageMenu,
   IconPreference,
-  IconProductListMenu
+  IconProductListMenu,
+  IconServiceListMenu
 } from '@/components/Icons'
 import { TitleView } from '@/components/TitleView'
 import { logoutService } from '@/services/authentication'
@@ -47,8 +48,13 @@ export default function Menu() {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => router.navigate('/products')}>
+          <IconServiceListMenu />
+          <Text style={styles.text}>Servicios F8</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => router.navigate('/products')}>
           <IconProductListMenu />
-          <Text style={styles.text}>Productos</Text>
+          <Text style={styles.text}>Productos F8</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => router.navigate('/newProduct')}>
