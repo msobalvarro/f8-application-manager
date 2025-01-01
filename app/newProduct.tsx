@@ -1,8 +1,8 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { useState } from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { ProductImage } from '@/components/product/productImage'
-import { Button } from 'native-base'
+import { Button, Checkbox } from 'native-base'
 import { UiStyles } from '@/styles'
 import { TitleView } from '@/components/TitleView'
 import { handleImagePickerService } from '@/services/imagePicker'
@@ -18,6 +18,7 @@ export default function NewProduct() {
   const [images, setImages] = useState<ImagePickerAsset[]>([])
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
+  const [pinned, setPinned] = useState(false)
 
   const handleImage = async () => {
     const newImages = await handleImagePickerService()
@@ -27,10 +28,11 @@ export default function NewProduct() {
   const submit = async () => {
     setLoading(true)
     try {
-      const product = await createProductService({
+      await createProductService({
         imagesList: images,
         description,
         name,
+        pinned
       })
 
       Toast.show({
@@ -59,6 +61,10 @@ export default function NewProduct() {
           subtitle='Agrega un nuevo producto a tu pagina web, agrega imagenes y una descripción'
           Icon={<IconNewImage />}
           onClickAdd={handleImage} />
+
+        <Checkbox isDisabled={loading} isChecked={pinned} onChange={() => setPinned(!pinned)} value='pinned'>
+          <Text style={{ color: '#CCC', fontSize: 16 }}>Fijar en la pagina web F8 principal</Text>
+        </Checkbox>
 
         <View style={styles.imageContainer}>
           {images.map((image, i) =>

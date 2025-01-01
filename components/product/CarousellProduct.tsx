@@ -2,14 +2,14 @@ import { CarousellStyle as styles } from '@/styles'
 import { View } from 'react-native'
 import { Image } from 'native-base'
 import { ScrollView } from 'react-native'
-import { serverAddress } from '@/constants/constanst'
+import { serverApi } from '@/constants/constanst'
 
 interface ItemsProps {
   imageSource: string
 }
 
 function RenderItemImage({ imageSource }: ItemsProps) {
-  const uri = `${serverAddress}/images/${imageSource}`
+  const uri = `${serverApi}/images/${imageSource}`
 
   return <Image alt={imageSource} source={{ uri }} style={styles.image} />
 }

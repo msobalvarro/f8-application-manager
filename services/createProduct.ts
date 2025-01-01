@@ -6,10 +6,11 @@ import { ImagePickerAsset } from 'expo-image-picker'
 interface Props {
   name: string
   description: string
+  pinned: boolean
   imagesList: ImagePickerAsset[]
 }
 
-export const createProductService = async ({ imagesList, description, name }: Props): Promise<ProductsResponse> => {
+export const createProductService = async ({ imagesList, description, name, pinned }: Props): Promise<ProductsResponse> => {
   try {
     const images: string[] = []
 
@@ -18,7 +19,9 @@ export const createProductService = async ({ imagesList, description, name }: Pr
       images.push(response)
     }
 
-    const data = { images, description, name }
+    const data = { images, description, name, pinned }
+    console.log(data)
+    
     const newProduct = await axiosInstance.post<ProductsResponse>('/products', data)
 
     return newProduct.data

@@ -8,6 +8,8 @@ interface Props {
 }
 
 export const ImageEditGalery = ({ images, onDelete }: Props) => {
+  console.log(`${serverApi}/images/${images[0]}`)
+  
   return (
     <View style={styles.imageContainer}>
       {images.map((image, i) =>
