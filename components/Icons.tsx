@@ -15,4 +15,6 @@ export const IconMessageMenu = () => <IconIonic name='chatbubble-ellipses' size=
 export const IconWhatsapp = () => <IconFontAwsome name='whatsapp' size={24} color={Colors.light.background} />
 export const IconCallPhone = () => <IconFontAwsome name='phone' size={24} color={Colors.light.background} />
 export const IconMail = () => <IconIonic name='mail-unread-outline' size={24} color={Colors.light.background} />
+export const IconPin = () => <IconIonic name='pin-sharp' size={24} color={Colors.light.background} />
+export const IconTrash = () => <IconIonic name='trash-bin' size={24} color={Colors.light.background} />
 

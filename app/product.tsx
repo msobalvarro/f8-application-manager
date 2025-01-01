@@ -1,15 +1,17 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
+import { IconTrash } from '@/components/Icons'
 import { ImageEditGalery } from '@/components/product/imageEditGalery'
 import { ProductSkeleton } from '@/components/product/productSkeleton'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
 import { ProductsResponse } from '@/interfaces'
+import { DeleteProductService } from '@/services/deleteProduct'
 import { UpdateProductService } from '@/services/updateProduct'
 import { ProductsStyles as styles, UiStyles } from '@/styles'
-import { useLocalSearchParams } from 'expo-router'
-import { Button } from 'native-base'
+import { router, useLocalSearchParams } from 'expo-router'
+import { Button, Checkbox } from 'native-base'
 import { useEffect, useState } from 'react'
-import { TextInput, View } from 'react-native'
+import { Alert, Text, TextInput, View } from 'react-native'
 import { Toast, ALERT_TYPE } from 'react-native-alert-notification'
 
 export default function Product() {
@@ -87,11 +89,52 @@ export default function Product() {
     }
   }
 
+  const deleteProduct = () => {
+    Alert.alert('Eliminar Producto', '¿Estas seguro de eliminar este producto?', [
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+        onPress: () => { },
+      },
+      {
+        text: 'Confirmar',
+        onPress: async () => {
+          setLoading(true)
+
+          try {
+            if (product) {
+              await DeleteProductService(product)
+
+              Toast.show({
+                title: 'Producto Actualizado',
+                type: ALERT_TYPE.SUCCESS,
+                textBody: `El producto ${product.archived ? 'se ha activado' : 'se ha archivado'} correctamente`,
+              })
+
+              router.back()
+            }
+          } catch (error) {
+            Toast.show({
+              title: 'Error',
+              type: ALERT_TYPE.WARNING,
+              textBody: String(error)
+            })
+          } finally {
+            setLoading(false)
+          }
+        },
+      },
+    ])
+
+
+  }
+
   return (
     <ContainerViewLayout scroll isLoading={isLoading} onRefresh={refetch}>
       <View style={{ paddingVertical: 30 }}>
         <TitleView
-          hiddenButton
+          onClickAdd={deleteProduct}
+          Icon={<IconTrash />}
           title='Edita tu Producto'
           subtitle='Edita la informacion de tu producto, agrega nuevas imagenes, dale de baja' />
       </View>
@@ -102,6 +145,19 @@ export default function Product() {
 
       {(!isLoading && product) && (
         <View style={styles.productContainerList}>
+          <Checkbox
+            isDisabled={loading}
+            isChecked={product.pinned}
+            onChange={() => setProduct({
+              ...product,
+              pinned: !product.pinned
+            })}
+            value='pinned'>
+            <Text style={{ color: '#CCC', fontSize: 16 }}>
+              Fijar en la pagina web F8 principal
+            </Text>
+          </Checkbox>
+
           <ImageEditGalery images={product.images} onDelete={deleteImage} />
 
           <View style={styles.inputContainer}>

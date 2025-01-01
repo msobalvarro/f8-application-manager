@@ -21,6 +21,7 @@ export interface ProductsPropierties {
   description: string
   unitPrice: number
   images: string[]
+  pinned: boolean
 }
 
 export interface ProductsResponse extends ProductsPropierties {

@@ -68,6 +68,13 @@ export const LoginStyles = StyleSheet.create({
 })
 
 export const ProductsStyles = StyleSheet.create({
+  subContainerTitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    // justifyContent: 'center',
+  },
+
   title: {
     paddingVertical: 50,
     fontSize: 34,
@@ -92,6 +99,7 @@ export const ProductsStyles = StyleSheet.create({
   },
 
   containerTitle: {
+    justifyContent: 'space-between',
     flexDirection: 'row',
     gap: 20,
   },
@@ -109,7 +117,6 @@ export const ProductsStyles = StyleSheet.create({
     marginVertical: 20,
     flexDirection: 'row',
     gap: 10,
-    // justifyContent: 'flex-end',
   },
 })
 
