@@ -1,5 +1,6 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
 import { IconImages, IconTrash } from '@/components/Icons'
+import { AddImagesButton } from '@/components/product/addImagesButton'
 import { ImageEditGalery } from '@/components/product/imageEditGalery'
 import { ProductSkeleton } from '@/components/product/productSkeleton'
 import { TitleView } from '@/components/TitleView'
@@ -196,10 +197,7 @@ export default function Product() {
               onDeleteLocal={deleteNewImage} />
           )}
 
-          <TouchableOpacity onPress={handleImage}>
-            <IconImages />
-            <Text>Agregar Imagenes</Text>
-          </TouchableOpacity>
+          <AddImagesButton onClick={handleImage} />
 
           <View style={styles.inputContainer}>
             <TextInput
