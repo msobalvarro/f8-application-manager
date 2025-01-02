@@ -4,32 +4,49 @@ import { ServiceItem } from '@/components/service/itemService'
 import { TitleView } from '@/components/TitleView'
 import { useAxios } from '@/hooks/useFetch'
 import { ServicesPropierties } from '@/interfaces'
-import { ProductsStyles as styles } from '@/styles'
+import { ProductsStyles as styles, UiStyles } from '@/styles'
 import { useRouter } from 'expo-router'
-import { Text, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
+import { useState } from 'react'
 
 export default function ServiceView() {
   const router = useRouter()
+  const [filter, setFilter] = useState<string>('')
   const { data, isLoading, refetch } = useAxios<ServicesPropierties[]>({ endpoint: '/services' })
 
   const onNewProduct = () => router.navigate('/newService')
 
+  const dataFilter = data?.filter((service) =>
+    `${service.title} ${service.description}`
+      .toLowerCase()
+      .includes(filter.toLowerCase())
+  )
+
   return (
     <ContainerViewLayout scroll isLoading={isLoading} onRefresh={refetch}>
-      <View style={{ paddingVertical: 20 }}>
+      <View style={{ paddingVertical: 20, gap: 20 }}>
         <TitleView
           title='Servicios F8'
           subtitle='Administra todos tus servicios, agrega nuevas historias de servicios realizados y elimina los que ya no necesites'
-          onClickAdd={onNewProduct} />
+          onClickAdd={onNewProduct}/>
+
+        <TextInput
+          placeholderTextColor='#CCC'
+          placeholder='Buscar servicio'
+          style={[UiStyles.InputStyle, { width: '100%', fontSize: 20 }]}
+          value={filter}
+          keyboardType='default'
+          onChangeText={setFilter}/>
       </View>
+
 
       <View style={styles.productContainerList}>
         {isLoading && (
-          <ProductSkeleton />
+          <ProductSkeleton/>
         )}
 
-        {!isLoading && data?.map(service => <ServiceItem service={service} key={service._id} />)}
-        {(!isLoading && data?.length === 0) && (
+        {!isLoading && dataFilter?.map(service => <ServiceItem service={service} key={service._id}/>)}
+        {(!isLoading && dataFilter?.length === 0) && (
           <Text style={{ color: 'rgba(255, 255, 255, 0.3)', fontSize: 24, alignSelf: 'center' }}>
             No hay Servicios
           </Text>
