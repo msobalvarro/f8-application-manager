@@ -308,9 +308,16 @@ export const MessageItemStyles = StyleSheet.create({
 
   containerButtons: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 20,
+    justifyContent: 'flex-end',
+    gap: 10,
   },
+
+  divider: {
+    height: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    marginVertical: 10,
+    width: '100%',
+  }
 })
 
 export const ContactButtonsStyles = StyleSheet.create({
@@ -326,9 +333,7 @@ export const ContactButtonsStyles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: Colors.primary,
     padding: 10,
-    marginVertical: 10,
     borderRadius: 5,
     alignItems: 'center',
     flex: 1,
