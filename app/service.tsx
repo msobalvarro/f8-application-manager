@@ -1,5 +1,5 @@
 import { ContainerViewLayout } from '@/components/ContainerView'
-import { IconImages, IconTrash } from '@/components/Icons'
+import { IconTrash } from '@/components/Icons'
 import { AddImagesButton } from '@/components/product/addImagesButton'
 import { ImageEditGalery } from '@/components/product/imageEditGalery'
 import { ProductSkeleton } from '@/components/product/productSkeleton'
@@ -15,7 +15,7 @@ import { ImagePickerAsset } from 'expo-image-picker'
 import { router, useLocalSearchParams } from 'expo-router'
 import { Button, Checkbox } from 'native-base'
 import { useEffect, useState } from 'react'
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, Text, TextInput, View } from 'react-native'
 import { Toast, ALERT_TYPE } from 'react-native-alert-notification'
 
 export default function Service() {
@@ -123,7 +123,8 @@ export default function Service() {
       {
         text: 'Cancelar',
         style: 'cancel',
-        onPress: () => { },
+        onPress: () => {
+        },
       },
       {
         text: 'Confirmar',
@@ -163,13 +164,13 @@ export default function Service() {
       <View style={{ paddingVertical: 30 }}>
         <TitleView
           onClickAdd={deleteProduct}
-          Icon={<IconTrash />}
+          Icon={<IconTrash/>}
           title='Edita tu Servicio'
-          subtitle='Edita tu servicio, tus clientes verán tus servicios publicados, agrega nuevas imagenes, dale de baja' />
+          subtitle='Edita tu servicio, tus clientes verán tus servicios publicados, agrega nuevas imagenes, dale de baja'/>
       </View>
 
       {isLoading && (
-        <ProductSkeleton />
+        <ProductSkeleton/>
       )}
 
       {(!isLoading && service) && (
@@ -183,19 +184,19 @@ export default function Service() {
             })}
             value='pinned'>
             <Text style={{ color: '#CCC', fontSize: 16 }}>
-              Fijar en la pagina web F8 principal
+              Fijar en la página web F8 principal
             </Text>
           </Checkbox>
 
-          {service.images.length > 0 && <ImageEditGalery images={service.images} onDelete={deleteImage} />}
+          {service.images.length > 0 && <ImageEditGalery images={service.images} onDelete={deleteImage}/>}
           {newImages.length > 0 && (
             <ImageEditGalery
               imagesLocal={newImages}
               isLocal
-              onDeleteLocal={deleteNewImage} />
+              onDeleteLocal={deleteNewImage}/>
           )}
 
-          <AddImagesButton onClick={handleImage} />
+          <AddImagesButton onClick={handleImage}/>
 
           <View style={styles.inputContainer}>
             <TextInput
@@ -206,7 +207,7 @@ export default function Service() {
               })}
               value={service.title}
               style={[UiStyles.InputStyle, { fontSize: 24 }]}
-              placeholder='Nombre del Producto' />
+              placeholder='Nombre del Producto'/>
 
             <TextInput
               placeholderTextColor='#CCC'
@@ -218,7 +219,7 @@ export default function Service() {
               multiline
               numberOfLines={4}
               style={[UiStyles.InputStyle, { height: 200 }]}
-              placeholder='Escriba una descripción del producto' />
+              placeholder='Escriba una descripción del producto'/>
           </View>
 
           <View style={styles.buttonContainer}>

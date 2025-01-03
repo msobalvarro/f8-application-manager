@@ -44,7 +44,7 @@ export const handleDeleteMessage = async (_id: string, setLoading: (v: boolean) 
 
             Toast.show({
               title: 'Eliminado',
-              textBody: 'El mensaje ha sido Elimado',
+              textBody: 'El mensaje ha sido elimado',
               type: ALERT_TYPE.SUCCESS,
             })
 

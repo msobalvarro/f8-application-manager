@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { handledArchiveMessage, handleDeleteMessage } from '@/services/messageServices'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { IconArchive, IconTrash } from '../Icons'
 
 dayjs.extend(relativeTime)
 
@@ -55,34 +56,34 @@ export const MessageCard = ({ message, refetch }: Props) => {
           <Text style={styles.messageText} selectable>{message.message}</Text>
         </View>
 
-        <ContactButtons
-          email={message.email}
-          whatsapp={message.phoneNumber}
-          phoneNumber={message.phoneNumber} />
-
         <View style={styles.containerButtons}>
           {!message?.archived && <Button
             isLoading={loading}
-            onPress={handledArchive}
-            style={{ flex: 1 }}
-            colorScheme='warning'>Archivar</Button>}
+            onPress={handledArchive}>
+              <IconArchive />
+          </Button>}
 
           {message?.archived && (
             <Button
               isLoading={loading}
-              onPress={handledArchive}
-              style={{ flex: 1 }}
-              colorScheme='success'>Recuperar</Button>
+              colorScheme='light'
+              onPress={handledArchive}>Recuperar</Button>
           )}
 
           <Button
             isLoading={loading}
-            style={{ flex: 1 }}
-            onPress={handleDelete}
-            colorScheme='rose'>
-            Eliminar
+            colorScheme={'rose'}
+            onPress={handleDelete}>
+            <IconTrash />
           </Button>
         </View>
+
+        <View style={styles.divider} />
+
+        <ContactButtons
+          email={message.email}
+          whatsapp={message.phoneNumber}
+          phoneNumber={message.phoneNumber} />
       </View>
     </ScrollView>
   )

@@ -19,6 +19,7 @@ export const IconCallPhone = () => <IconFontAwsome name='phone' size={24} color=
 export const IconMail = () => <IconIonic name='mail-unread-outline' size={24} color={Colors.light.background} />
 export const IconPin = () => <IconIonic name='pin-sharp' size={24} color={Colors.light.background} />
 export const IconTrash = () => <IconIonic name='trash-bin' size={24} color={Colors.light.background} />
+export const IconArchive = () => <IconIonic name='archive' size={24} color={Colors.light.background} />
 export const IconImages = () => <IconIonic name='images' size={24} color={Colors.light.background} />
 export const IconMainMenu = () => <IconIonic name='apps' size={24} color={Colors.primary} />
 
