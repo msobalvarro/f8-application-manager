@@ -21,8 +21,8 @@ export const authenticationService = async (username: string, password: string):
 }
 
 export const logoutService = async () => {
-  await AsyncStorage.removeItem('token')
   store.dispatch(removeAuthentication())
+  await AsyncStorage.removeItem('token')
 }
 
 export const getInitState = async () => {

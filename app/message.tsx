@@ -6,14 +6,14 @@ import { useAxios } from '@/hooks/useFetch'
 import { MessagesResponse } from '@/interfaces'
 import { MessageStyles as styles, UiStyles } from '@/styles'
 import { Checkbox } from 'native-base'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Text, TextInput, View } from 'react-native'
 
 export default function MessageView() {
   const [showArchive, toggleArchive] = useState(false)
   const [filter, setFiter] = useState('')
   const { data, isLoading, refetch } = useAxios<MessagesResponse[]>({
-    endpoint: `/message?archived=${showArchive}`
+    endpoint: `/messages?archived=${showArchive}`
   })
 
   const dataFilter = data?.filter((message) =>
@@ -22,9 +22,12 @@ export default function MessageView() {
       .includes(filter.toLowerCase())
   )
 
+  useEffect(() => {
+    refetch()
+  }, [showArchive])
+
   const onChangeArchived = () => {
     toggleArchive(!showArchive)
-    refetch()
   }
 
   return (

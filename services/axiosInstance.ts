@@ -3,7 +3,7 @@ import { getToken, logoutService } from './authentication'
 import { serverAddress } from '@/constants/constanst'
 
 export const axiosInstance = axios.create({
-  baseURL: `${serverAddress}/api/`,
+  baseURL: serverAddress,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'

@@ -15,7 +15,8 @@ const counterSlice = createSlice({
       state.isAuth = true
     },
     removeAuthentication: (state: StateRedux) => { 
-      state = initialState
+      state.token = null
+      state.isAuth = false
     }
   }
 })

@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import { ProductImage } from './productImage'
-import { serverApi } from '@/constants/constanst'
+import { serverAddress } from '@/constants/constanst'
 import { ImagePickerAsset } from 'expo-image-picker'
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   isLocal?: boolean
 }
 
-export const ImageEditGalery = ({ images, onDelete, isLocal, imagesLocal, onDeleteLocal }: Props) => {  
+export const ImageEditGalery = ({ images, onDelete, isLocal, imagesLocal, onDeleteLocal }: Props) => {
   if (isLocal) {
     return (
       <View style={styles.imageContainer}>
@@ -30,7 +30,7 @@ export const ImageEditGalery = ({ images, onDelete, isLocal, imagesLocal, onDele
         <ProductImage
           onDelete={() => onDelete?.(image)}
           key={i}
-          source={`${serverApi}/images/${image}`} />)}
+          source={`${serverAddress}/images/${image}`} />)}
     </View>
 
   )

@@ -51,7 +51,8 @@ export default function Layout() {
 
       socket.on('disconnect', (data) => {
         Toast.show({
-          title: 'Socket desconnected',
+          title: 'Socket desconectado',
+          textBody: 'Te has has deconectado, revisa tu conexión a internet',
           type: ALERT_TYPE.DANGER,
           onPress: () => {
             router.navigate('/message')

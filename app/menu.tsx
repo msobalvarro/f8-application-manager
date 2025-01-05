@@ -26,7 +26,7 @@ export default function Menu() {
         {
           text: 'Confirmar', onPress: async () => {
             await logoutService()
-            router.navigate('/')
+            router.replace('/')
           }
         },
       ],

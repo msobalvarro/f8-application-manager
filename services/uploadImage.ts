@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 import { FileUploadedResponse } from '@/interfaces'
 import { ImagePickerAsset } from 'expo-image-picker'
 import { store } from '@/store'
-import { serverApiFile } from '@/constants/constanst'
+import { serverAddress, serverApiFile } from '@/constants/constanst'
 
 export const uploadImageService = async (image: ImagePickerAsset): Promise<string> => {
   const formData = new FormData()
@@ -14,7 +14,7 @@ export const uploadImageService = async (image: ImagePickerAsset): Promise<strin
 
   try {
     let { data } = await axios.post<FileUploadedResponse>(
-      serverApiFile,
+      `${serverAddress}/file`,
       formData,
       {
         headers: {
