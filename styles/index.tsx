@@ -101,6 +101,7 @@ export const ProductsStyles = StyleSheet.create({
   containerTitle: {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingVertical: 20,
     gap: 20,
   },
 
