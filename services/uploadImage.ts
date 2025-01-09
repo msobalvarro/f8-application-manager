@@ -12,7 +12,7 @@ export const uploadImageService = async (image: ImagePickerAsset): Promise<strin
     type: image.mimeType,
   } as any)
 
-  try {
+  try {    
     let { data } = await axios.post<FileUploadedResponse>(
       `${serverAddress}/images`,
       formData,

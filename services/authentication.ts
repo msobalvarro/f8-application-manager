@@ -1,15 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LoginResponse } from '@/interfaces'
 import { store, setAuthentication, removeAuthentication } from '@/store'
-import { getGenericPassword, setGenericPassword } from 'react-native-keychain'
+import { axiosInstance } from './axiosInstance'
 
 export const authenticationService = async (username: string, password: string): Promise<LoginResponse> => {
-  const response = await fetch('http://192.168.1.3:3000/api/login', {
-    method: 'POST',
-    body: JSON.stringify({ username, password }),
-  })
-
-  const data: LoginResponse = await response.json()
+  const { data } = await axiosInstance.post<LoginResponse>('/login', { username, password })
+  
   if (data?.error) throw new Error(data.error)
 
   if (data?.token) {

@@ -4,7 +4,7 @@
     "slug": "f8-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo/logo.png",
+    "icon": "assets/images/logo/logo.png",
     "scheme": "f8",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

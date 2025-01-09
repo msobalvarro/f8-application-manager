@@ -10,12 +10,15 @@ import {
 } from '@/components/Icons'
 import { TitleView } from '@/components/TitleView'
 import { logoutService } from '@/services/authentication'
+import { store } from '@/store'
 import { MenuStyles as styles } from '@/styles'
 import { useRouter, } from 'expo-router'
 import { Alert, Text, TouchableOpacity, View } from 'react-native'
 
 export default function Menu() {
   const router = useRouter()
+
+  console.log(store.getState())
 
   const logout = async () => {
     Alert.alert(
