@@ -2,7 +2,7 @@ package com.anonymous.f8app
 
 import android.os.Build
 import android.os.Bundle
-import com.f8app.BuildConfig
+//import com.f8app.BuildConfig
 import com.f8app.R
 
 import com.facebook.react.ReactActivity
@@ -11,6 +11,7 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnable
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 
 import expo.modules.ReactActivityDelegateWrapper
+import expo.modules.BuildConfig
 
 class MainActivity : ReactActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {

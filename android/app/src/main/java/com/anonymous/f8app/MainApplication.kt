@@ -2,6 +2,7 @@ package com.anonymous.f8app
 
 import android.app.Application
 import android.content.res.Configuration
+import com.f8app.BuildConfig
 
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -14,7 +15,6 @@ import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
 
 import expo.modules.ApplicationLifecycleDispatcher
-import expo.modules.BuildConfig
 import expo.modules.ReactNativeHostWrapper
 
 class MainApplication : Application(), ReactApplication {
@@ -34,8 +34,7 @@ class MainApplication : Application(), ReactApplication {
           override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
           override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-//          override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
-          override val isHermesEnabled: Boolean = true
+          override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
       }
   )
 
